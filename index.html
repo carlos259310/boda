@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel & Andrea | Nuestra Boda</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- MUSIC BUTTON -->
+    <button class="music-button" id="musicBtn">
+        <svg class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+        </svg>
+    </button>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#ceremonia" class="nav-link">Ceremonia</a></li>
+                <li><a href="#vestuario" class="nav-link">Vestuario</a></li>
+                <li><a href="#confirmar" class="nav-link">Confirmar</a></li>
+                <li><a href="#galeria" class="nav-link">Galería</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
+        <div class="hero-bg-placeholder"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Manuel & Andrea</h1>
+            <p class="hero-subtitle">Nos Casamos</p>
+        </div>
+        <div class="hero-wave">
+            <svg class="wave-svg" viewBox="0 0 1200 150" preserveAspectRatio="none">
+                <path d="M0,80 C300,110 500,50 600,65 C700,80 900,110 1200,80 L1200,150 L0,150 Z" 
+                      fill="#FFFFFF"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- FECHA SECTION -->
+    <section class="date-section animate-on-scroll fade-up">
+        <div class="container text-center">
+            <div class="date-ornament"></div>
+            <p class="date-text">17 de Noviembre, 2026</p>
+        </div>
+    </section>
+
+    <!-- NOMBRES SECTION -->
+    <section class="nombres-section">
+        <div class="ampersand-bg">&</div>
+        <div class="container text-center nombres-content">
+            <h2 class="nombre animate-on-scroll fade-left">Manuel</h2>
+            <span class="ampersand animate-on-scroll scale-in delay-1">&</span>
+            <h2 class="nombre animate-on-scroll fade-right delay-2">Andrea</h2>
+            <div class="botanical-decoration animate-on-scroll fade-up delay-3"></div>
+        </div>
+    </section>
+
+    <!-- FRASE SECTION -->
+    <section class="frase-section">
+        <div class="watercolor-bg"></div>
+        <div class="container text-center frase-content">
+            <p class="frase-text animate-on-scroll fade-up">
+                Hemos decidido unir nuestras vidas en matrimonio y queremos que seas parte de este momento tan especial.
+            </p>
+            <p class="frase-reference animate-on-scroll fade-up delay-1">Con amor, Manuel & Andrea</p>
+        </div>
+    </section>
+
+    <!-- COUNTDOWN SECTION -->
+    <section id="countdown" class="countdown-section">
+        <div class="container text-center">
+            <h3 class="countdown-title animate-on-scroll fade-up">Faltan...</h3>
+            <div class="countdown-timer">
+                <div class="countdown-item animate-on-scroll scale-in delay-1">
+                    <span class="countdown-number" id="days">0</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <span class="countdown-separator">:</span>
+                <div class="countdown-item animate-on-scroll scale-in delay-2">
+                    <span class="countdown-number" id="hours">0</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <span class="countdown-separator">:</span>
+                <div class="countdown-item animate-on-scroll scale-in delay-3">
+                    <span class="countdown-number" id="minutes">0</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <span class="countdown-separator">:</span>
+                <div class="countdown-item animate-on-scroll scale-in delay-4">
+                    <span class="countdown-number" id="seconds">0</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CEREMONIA Y RECEPCIÓN SECTION -->
+    <section id="ceremonia" class="ceremonia-section animate-on-scroll fade-up">
+        <div class="container text-center">
+            <div class="evento">
+                <div class="evento-icon-wrapper">
+                    <svg class="evento-icon" viewBox="0 0 64 64">
+                        <path d="M32 8 L32 4 M20 10 L16 6 M44 10 L48 6" stroke-linecap="round"/>
+                        <path d="M32 16 L32 20 L28 28 L36 28 L32 20 Z" stroke-linejoin="round"/>
+                        <rect x="18" y="28" width="28" height="28" rx="2"/>
+                        <path d="M24 28 L24 56 M40 28 L40 56"/>
+                        <path d="M18 40 L46 40"/>
+                        <circle cx="32" cy="20" r="2" fill="currentColor"/>
+                        <path d="M28 48 L36 48" stroke-linecap="round" stroke-width="3"/>
+                    </svg>
+                </div>
+                <h3 class="evento-title">Ceremonia y Recepción</h3>
+                <p class="evento-venue">Hostal de Joshe - Santa Helena</p>
+                <p class="evento-time">Hora: 5:00 pm</p>
+                <a href="#" class="btn">Click Ubicación</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMAGE SECTION -->
+    <section class="image-section animate-on-scroll scale-in">
+        <div class="image-placeholder"></div>
+        <div class="image-wave-bottom">
+            <svg class="wave-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+                <path d="M0,50 C300,80 500,20 600,35 C700,50 900,80 1200,50 L1200,100 L0,100 Z" 
+                      fill="#FFFFFF"/>
+            </svg>
+        </div>
+        <div class="image-botanical"></div>
+    </section>
+
+    <!-- CÓDIGO DE VESTUARIO SECTION -->
+    <section id="vestuario" class="vestuario-section">
+        <div class="container text-center">
+            <h2 class="vestuario-title animate-on-scroll fade-up">Código de Vestuario</h2>
+            
+            <div class="vestuario-icons-container animate-on-scroll fade-up delay-1">
+                <div class="icon-box">
+                    <svg class="animated-icon woman-icon" viewBox="0 0 64 64">
+                        <path d="M32 12c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zM48 52l-4-20c0-6.6-5.4-12-12-12s-12 5.4-12 12l-4 20h32z" />
+                    </svg>
+                    <span class="dresscode-category">Mujeres</span>
+                </div>
+                <div class="icon-box">
+                    <svg class="animated-icon man-icon" viewBox="0 0 64 64">
+                        <path d="M32 12c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zM44 28h-24c-2.2 0-4 1.8-4 4v20h32v-20c0-2.2-1.8-4-4-4z" />
+                        <path d="M31 28l-3 4h4z" fill="#fff" />
+                    </svg>
+                    <span class="dresscode-category">Hombres</span>
+                </div>
+            </div>
+
+            <div class="dresscode animate-on-scroll fade-up delay-2">
+                <p class="dresscode-text">
+                    Vestido formal largo en colores claros y neutros.<br>
+                    <strong>Nos reservamos los colores:</strong> Blanco, beige, negro y azul en cualquier tonalidad.
+                </p>
+            </div>
+            
+            <div class="dresscode animate-on-scroll fade-up delay-3">
+                <p class="dresscode-text">
+                    Traje formal.<br>
+                    <strong>Nos reservamos los colores:</strong> Negro y azul en cualquier tonalidad.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAVE THE DATE -->
+    <section class="save-date-section animate-on-scroll fade-up">
+        <div class="container text-center">
+            <p class="save-date-text">Reserva la Fecha</p>
+            <p class="save-date-date">17 de Noviembre de 2026</p>
+        </div>
+    </section>
+
+    <!-- HASHTAG SECTION -->
+    <section class="hashtag-section animate-on-scroll fade-up">
+        <div class="container text-center">
+            <div class="hashtag-icon-wrapper">
+                <svg class="hashtag-icon" viewBox="0 0 64 64">
+                    <path d="M20 18 L16 46 M44 18 L40 46" stroke-linecap="round"/>
+                    <path d="M10 28 L50 28 M8 38 L48 38" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <p class="hashtag-text">#ManuelAndAndrea2026</p>
+        </div>
+    </section>
+
+    <!-- PERSONAS FAVORITAS SECTION -->
+    <section class="favoritas-section">
+        <div class="container text-center">
+            <h3 class="favoritas-title animate-on-scroll fade-up">Personas Favoritas</h3>
+            <p class="favoritas-subtitle animate-on-scroll fade-up delay-1">Con la bendición de nuestros padres...</p>
+            
+            <div class="padres-container">
+                <div class="padres-group animate-on-scroll fade-left delay-2">
+                    <div class="padres-icon-wrapper">
+                        <svg class="padres-icon" viewBox="0 0 64 64">
+                            <path d="M32 16 C32 16 28 12 28 8 C28 4 32 4 32 4 C32 4 36 4 36 8 C36 12 32 16 32 16" 
+                                  stroke-linejoin="round"/>
+                            <path d="M20 28 L32 32 L44 28" stroke-linejoin="round"/>
+                            <path d="M32 32 L32 48 M20 48 L44 48"/>
+                        </svg>
+                    </div>
+                    <p class="padres-label">Padres de la Novia</p>
+                    <div class="padres-names">
+                        <p class="padres-name">Nombre Padre</p>
+                        <p class="padres-name">Nombre Madre</p>
+                    </div>
+                </div>
+                
+                <div class="padres-group animate-on-scroll fade-right delay-3">
+                    <div class="padres-icon-wrapper">
+                        <svg class="padres-icon" viewBox="0 0 64 64">
+                            <path d="M32 16 C32 16 28 12 28 8 C28 4 32 4 32 4 C32 4 36 4 36 8 C36 12 32 16 32 16" 
+                                  stroke-linejoin="round"/>
+                            <path d="M20 28 L32 32 L44 28" stroke-linejoin="round"/>
+                            <path d="M32 32 L32 48 M20 48 L44 48"/>
+                        </svg>
+                    </div>
+                    <p class="padres-label">Padres del Novio</p>
+                    <div class="padres-names">
+                        <p class="padres-name">Nombre Padre</p>
+                        <p class="padres-name">Nombre Madre</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <section class="video-section">
+        <div class="container text-center">
+            <h3 class="vestuario-title animate-on-scroll fade-up">Nuestro Video</h3>
+            <div class="video-placeholder animate-on-scroll scale-in delay-1">
+                <svg class="video-play-icon" viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="28" stroke-width="2"/>
+                    <path d="M26 20 L26 44 L44 32 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONFIRMACIÓN SECTION -->
+    <section id="confirmar" class="confirmacion-section">
+        <div class="container text-center">
+            <p class="confirmacion-message animate-on-scroll fade-up">
+                Las mejores cosas de la vida merecen ser compartidas. Gracias por celebrar con nosotros, 
+                estamos muy emocionados de compartir este día tan especial contigo. Queremos asegurarnos 
+                de que tu lugar este reservado, así que nos encantaría saber si podrás acompañarnos.
+            </p>
+            <p class="confirmacion-deadline animate-on-scroll fade-up delay-1">Confirma tu asistencia<br>antes del 25 de octubre</p>
+            <div class="buttons-container">
+                <a href="#" class="btn animate-on-scroll scale-in delay-2">Confirmarle a la Novia</a>
+                <a href="#" class="btn animate-on-scroll scale-in delay-3">Confirmarle al Novio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA/SLIDER SECTION -->
+    <section id="galeria" class="galeria-section">
+        <div class="container text-center">
+            <h3 class="vestuario-title animate-on-scroll fade-up">Galería</h3>
+            <div class="slider-container animate-on-scroll scale-in delay-1"></div>
+            <div class="slider-dots animate-on-scroll fade-up delay-2">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARTIR FOTOS SECTION -->
+    <section class="compartir-section">
+        <div class="container text-center">
+            <div class="compartir-image animate-on-scroll scale-in"></div>
+            <h3 class="compartir-title animate-on-scroll fade-up delay-1">¡Comparte tus fotos y videos de nuestra boda aquí!</h3>
+            <p class="compartir-subtitle animate-on-scroll fade-up delay-2">Dando Click</p>
+            <a href="#" class="btn animate-on-scroll scale-in delay-3">Subir Fotos/Videos</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-names animate-on-scroll fade-up">
+                    <span class="footer-name">Manuel</span>
+                    <span class="footer-ampersand">&</span>
+                    <span class="footer-name">Andrea</span>
+                </p>
+                <p class="footer-quote animate-on-scroll fade-up delay-1">
+                    "Por encima de todo, vístanse de amor, que es el vínculo perfecto."
+                </p>
+                <p class="footer-reference animate-on-scroll fade-up delay-2">— Colosenses 3:14</p>
+                <div class="footer-divider animate-on-scroll scale-in delay-3"></div>
+                <p class="footer-credits">
+                    Elaborado por: <strong>Ing. Carlos Rodriguez</strong> - Desarrollador Web
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-top" id="scrollTop">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>

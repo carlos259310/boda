@@ -85,11 +85,26 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-base);
   color: var(--color-text-dark);
   background: var(--color-white);
   overflow-x: hidden;
   line-height: 1.6;
+}
+
+/* Names use the script font */
+.hero-title, .nombre, .footer-name {
+  font-family: var(--font-script) !important;
+}
+
+/* Secondary names or logos */
+.nav-logo, .footer-names {
+  font-family: var(--font-script);
+}
+
+/* All other headings and text use the base Poppins font for clarity */
+h1, h2, h3, h4, .nav-link, .hero-subtitle, .date-text, .section-title, .countdown-title, .countdown-number, .countdown-label, .evento-title, .evento-venue, .evento-time, .vestuario-title, .dresscode-category, .dresscode-text, .save-date-text, .save-date-date, .hashtag-text, .padres-label, .padres-name, .confirmacion-message, .confirmacion-deadline, .compartir-title, .footer-quote, .footer-reference, .footer-credits {
+  font-family: var(--font-base);
 }
 
 /* ===== NAVIGATION ===== */

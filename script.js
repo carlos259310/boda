@@ -1,8 +1,8 @@
 // ===== WEDDING WEBSITE JAVASCRIPT =====
-// Manuel & Andrea - 17 de Noviembre, 2026
+// Manuel & Andrea - Sábado 28 de Noviembre, 2026
 
 // ===== CONFIGURACIÓN INICIAL =====
-const weddingDate = new Date('2026-11-17T17:00:00').getTime();
+const weddingDate = new Date('2026-11-28T17:00:00').getTime();
 let isPlaying = false;
 let countdownInterval = null;
 let animationFrameId = null;
@@ -347,5 +347,5 @@ if (prefersReducedMotion.matches) {
 
 // ===== CONSOLE LOG =====
 console.log("🎉 Invitación de boda cargada exitosamente");
-console.log("📅 Fecha de la boda: 17 de Noviembre, 2026");
+console.log("📅 Fecha de la boda: Sábado 28 de Noviembre, 2026");
 console.log("⏰ Hora: 5:00 PM");

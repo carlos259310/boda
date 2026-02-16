@@ -1,0 +1,221 @@
+---
+const images = [
+    {
+        url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
+        alt: 'Momentos especiales 1'
+    },
+    {
+        url: 'https://images.unsplash.com/photo-1519225495810-7517c31e9058?q=80&w=2070&auto=format&fit=crop',
+        alt: 'Momentos especiales 2'
+    },
+    {
+        url: 'https://images.unsplash.com/photo-1465495910483-0d674b0b800a?q=80&w=2070&auto=format&fit=crop',
+        alt: 'Momentos especiales 3'
+    },
+    {
+        url: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop',
+        alt: 'Momentos especiales 4'
+    }
+];
+---
+<section id="galeria" class="galeria-section">
+    <div class="container text-center">
+        <h3 class="vestuario-title animate-on-scroll fade-up">Galería</h3>
+        
+        <div class="carousel-wrapper animate-on-scroll scale-in delay-1">
+            <div class="slider-container" id="gallerySlider">
+                {images.map((img, index) => (
+                    <div class={`slide ${index === 0 ? 'active' : ''}`} style={`background-image: url('${img.url}');`}></div>
+                ))}
+            </div>
+
+            <!-- Botones de navegación -->
+            <button class="carousel-control prev" id="prevBtn" aria-label="Imagen anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="carousel-control next" id="nextBtn" aria-label="Siguiente imagen">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </div>
+
+        <div class="slider-dots animate-on-scroll fade-up delay-2">
+            {images.map((_, index) => (
+                <span class={`dot ${index === 0 ? 'active' : ''}`} data-index={index}></span>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .carousel-wrapper {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        height: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .slider-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .slide {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out, transform 1.2s ease-out;
+        background-size: cover;
+        background-position: center;
+        transform: scale(1.1);
+    }
+
+    .slide.active {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 1;
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: all 0.3s ease;
+    }
+
+    .carousel-control:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-control svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--color-primary);
+        opacity: 0.3;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dot.active {
+        opacity: 1;
+        transform: scale(1.4);
+        background: var(--color-primary);
+        box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .carousel-wrapper {
+            height: 350px;
+        }
+        .carousel-control {
+            width: 40px;
+            height: 40px;
+        }
+    }
+</style>
+
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const totalSlides = slides.length;
+    let autoPlayInterval: any;
+
+    function updateCarousel(index: number) {
+        slides.forEach((slide, i) => {
+            if (slide instanceof HTMLElement) {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            if (dot instanceof HTMLElement) {
+                dot.classList.toggle('active', i === index);
+            }
+        });
+
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        const nextIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel(nextIndex);
+    }
+
+    function prevSlide() {
+        const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateCarousel(prevIndex);
+    }
+
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+    }
+
+    nextBtn?.addEventListener("click", () => {
+        nextSlide();
+        resetAutoPlay();
+    });
+
+    prevBtn?.addEventListener("click", () => {
+        prevSlide();
+        resetAutoPlay();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            updateCarousel(index);
+            resetAutoPlay();
+        });
+    });
+
+    // Iniciar auto-play
+    startAutoPlay();
+
+    // Pausar en hover
+    const wrapper = document.querySelector('.carousel-wrapper');
+    wrapper?.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+    wrapper?.addEventListener('mouseleave', startAutoPlay);
+</script>

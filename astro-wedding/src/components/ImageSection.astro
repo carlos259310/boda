@@ -1,7 +1,11 @@
 ---
+import { getImage } from "astro:assets";
+import gallery1 from "../assets/images/gallery-1.jpg";
+
+const optimizedImage = await getImage({src: gallery1, format: 'webp'});
 ---
 <section class="image-section animate-on-scroll scale-in">
-    <div class="image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; opacity: 1;"></div>
+    <div class="image-placeholder" style={`background-image: url('${optimizedImage.src}'); background-size: cover; background-position: center; opacity: 1;`}></div>
     <div class="image-wave-bottom">
         <svg class="wave-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
             <path d="M0,50 C300,80 500,20 600,35 C700,50 900,80 1200,50 L1200,100 L0,100 Z" 

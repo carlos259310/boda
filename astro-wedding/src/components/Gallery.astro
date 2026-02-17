@@ -1,22 +1,38 @@
 ---
-const images = [
+import { getImage } from "astro:assets";
+import gallery1 from "../assets/images/gallery-1.jpg";
+import gallery2 from "../assets/images/gallery-2.jpg";
+import gallery3 from "../assets/images/gallery-3.jpg";
+import gallery4 from "../assets/images/gallery-4.jpg";
+
+const rawImages = [
     {
-        url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
+        src: gallery1,
         alt: 'Momentos especiales 1'
     },
     {
-        url: 'https://images.unsplash.com/photo-1519225495810-7517c31e9058?q=80&w=2070&auto=format&fit=crop',
+        src: gallery2,
         alt: 'Momentos especiales 2'
     },
     {
-        url: 'https://images.unsplash.com/photo-1465495910483-0d674b0b800a?q=80&w=2070&auto=format&fit=crop',
+        src: gallery3,
         alt: 'Momentos especiales 3'
     },
     {
-        url: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop',
+        src: gallery4,
         alt: 'Momentos especiales 4'
     }
 ];
+
+const images = await Promise.all(
+    rawImages.map(async (img) => {
+        const optimizedImage = await getImage({src: img.src, format: 'webp'});
+        return {
+            ...img,
+            url: optimizedImage.src
+        }
+    })
+);
 ---
 <section id="galeria" class="galeria-section">
     <div class="container text-center">
@@ -75,6 +91,7 @@ const images = [
         background-position: center;
         transform: scale(1.1);
     }
+
 
     .slide.active {
         opacity: 1;

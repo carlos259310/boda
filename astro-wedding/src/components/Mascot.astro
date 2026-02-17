@@ -65,7 +65,7 @@ import bostonShark from "../assets/images/boston-shark.png";
     .mascot-container {
         position: fixed;
         bottom: 20px;
-        left: 20px;
+        right: 20px;
         z-index: 1000;
         display: flex;
         flex-direction: column;
@@ -80,8 +80,8 @@ import bostonShark from "../assets/images/boston-shark.png";
     }
     
     .mascot-image-wrapper {
-        width: 110px;
-        height: 110px;
+        width: 140px;
+        height: 140px;
         position: relative;
         filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
     }
@@ -134,13 +134,14 @@ import bostonShark from "../assets/images/boston-shark.png";
         background: rgba(255, 255, 255, 0.95);
         padding: 10px 15px;
         border-radius: 15px;
-        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 15px;
         box-shadow: 0 4px 15px rgba(74, 144, 226, 0.15);
         margin-bottom: 10px;
         max-width: 180px;
         text-align: center;
         position: relative;
-        transform-origin: bottom left;
+        transform-origin: bottom right;
         animation: fadeInBubble 0.5s ease forwards 1s;
         border: 1px solid rgba(74, 144, 226, 0.1);
         backdrop-filter: blur(5px);
@@ -150,7 +151,7 @@ import bostonShark from "../assets/images/boston-shark.png";
         content: '';
         position: absolute;
         bottom: -6px;
-        left: 15px;
+        right: 15px;
         width: 12px;
         height: 12px;
         background: rgba(255, 255, 255, 0.95);
@@ -185,8 +186,8 @@ import bostonShark from "../assets/images/boston-shark.png";
 
     @media (max-width: 768px) {
         .mascot-image-wrapper {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
         }
         .speech-bubble {
             font-size: 0.75rem;
@@ -195,7 +196,8 @@ import bostonShark from "../assets/images/boston-shark.png";
         }
         .mascot-container {
             bottom: 15px;
-            left: 15px;
+            right: 15px;
+            left: auto;
         }
     }
 </style>

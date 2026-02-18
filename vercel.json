@@ -3,7 +3,7 @@
     {
       "src": "astro-wedding/package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+      "config": { "distDir": "astro-wedding/dist" }
     }
   ],
   "headers": [

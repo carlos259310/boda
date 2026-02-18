@@ -1,9 +1,9 @@
 {
   "builds": [
     {
-      "src": "astro-wedding/package.json",
+      "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "astro-wedding/dist" }
+      "config": { "distDir": "dist" }
     }
   ],
   "headers": [

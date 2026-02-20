@@ -8,17 +8,25 @@
     </svg>
 </button>
 
+<audio id="weddingMusic" loop>
+    <!-- Asegúrate de tener este archivo en "public/Prometo.mp3" -->
+    <source src="/Prometo.mp3" type="audio/mpeg" />
+</audio>
+
 <script>
     const musicBtn = document.getElementById("musicBtn");
+    const audio = document.getElementById("weddingMusic") as HTMLAudioElement;
     let isPlaying = false;
 
-    if (musicBtn) {
+    if (musicBtn && audio) {
         musicBtn.addEventListener("click", () => {
             isPlaying = !isPlaying;
             if (isPlaying) {
                 musicBtn.classList.add("playing");
+                audio.play().catch(e => console.log('Audio play failed', e));
             } else {
                 musicBtn.classList.remove("playing");
+                audio.pause();
             }
         });
     }

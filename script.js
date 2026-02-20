@@ -242,6 +242,7 @@ countdownInterval = setInterval(updateCountdown, 1000);
 
 // ===== MUSIC BUTTON =====
 const musicBtn = document.getElementById("musicBtn");
+const audio = document.getElementById("weddingMusic");
 
 if (musicBtn) {
   musicBtn.addEventListener("click", () => {
@@ -249,12 +250,14 @@ if (musicBtn) {
 
     if (isPlaying) {
       musicBtn.classList.add("playing");
-      // Here you would connect the actual audio player
-      // const audio = document.getElementById('weddingMusic');
-      // audio.play();
+      if(audio) {
+        audio.play().catch(e => console.log('Audio play failed', e));
+      }
     } else {
       musicBtn.classList.remove("playing");
-      // audio.pause();
+      if(audio) {
+        audio.pause();
+      }
     }
   });
 }
@@ -349,3 +352,92 @@ if (prefersReducedMotion.matches) {
 console.log("🎉 Invitación de boda cargada exitosamente");
 console.log("📅 Fecha de la boda: Sábado 28 de Noviembre, 2026");
 console.log("⏰ Hora: 5:00 PM");
+
+// ===== LOCATION MODAL & CACHE HELPERS =====
+const locationBtn = document.getElementById('locationBtn');
+const locationModal = document.getElementById('locationModal');
+const locationClose = document.getElementById('locationClose');
+const locationBackdrop = document.getElementById('locationBackdrop');
+const copyAddressBtn = document.getElementById('copyAddressBtn');
+const openMapsBtn = document.getElementById('openMapsBtn');
+const clearCacheBtn = document.getElementById('clearCacheBtn');
+const cacheStatus = document.getElementById('cacheStatus');
+const ADDRESS_TEXT = 'Hostal de Joshe, Santa Helena';
+
+function openLocationModal() {
+  if (!locationModal) return;
+  locationModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  if (cacheStatus) cacheStatus.textContent = '';
+}
+
+function closeLocationModal() {
+  if (!locationModal) return;
+  locationModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+if (locationBtn) locationBtn.addEventListener('click', openLocationModal);
+if (locationClose) locationClose.addEventListener('click', closeLocationModal);
+if (locationBackdrop) locationBackdrop.addEventListener('click', closeLocationModal);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && locationModal && locationModal.getAttribute('aria-hidden') === 'false') {
+    closeLocationModal();
+  }
+});
+
+if (copyAddressBtn) {
+  copyAddressBtn.addEventListener('click', async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(ADDRESS_TEXT);
+      } else {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = ADDRESS_TEXT;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      if (cacheStatus) cacheStatus.textContent = 'Dirección copiada al portapapeles.';
+    } catch (err) {
+      if (cacheStatus) cacheStatus.textContent = 'No se pudo copiar. Selecciona y copia manualmente.';
+    }
+  });
+}
+
+if (openMapsBtn) {
+  openMapsBtn.addEventListener('click', () => {
+    // Abrir el enlace específico de Google Maps
+    window.open('https://maps.app.goo.gl/UWnKyMH6rmEK9VL56', '_blank');
+  });
+}
+
+async function clearSiteCaches() {
+  if (cacheStatus) cacheStatus.textContent = 'Limpiando caché...';
+  try {
+    if ('caches' in window) {
+      const cacheKeys = await caches.keys();
+      await Promise.all(cacheKeys.map((k) => caches.delete(k)));
+    }
+
+    if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map((r) => r.unregister()));
+    }
+
+    try { localStorage.clear(); } catch (e) {}
+    try { sessionStorage.clear(); } catch (e) {}
+
+    if (cacheStatus) cacheStatus.textContent = 'Caché limpiada. Recargando...';
+    // Force cache-busting reload
+    const url = window.location.pathname + '?v=' + Date.now();
+    setTimeout(() => { window.location.href = url; }, 900);
+  } catch (err) {
+    if (cacheStatus) cacheStatus.textContent = 'Error limpiando caché: ' + (err && err.message ? err.message : err);
+  }
+}
+
+if (clearCacheBtn) clearCacheBtn.addEventListener('click', clearSiteCaches);

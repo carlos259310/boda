@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Mascot from '../components/Mascot.astro';
+import Loader from '../components/Loader.astro';
 
 interface Props {
 	title?: string;
@@ -23,6 +24,7 @@ const { title = "Manuel & Andrea | Nuestra Boda" } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Pinyon+Script&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <Loader />
     <slot />
     <Mascot />
     

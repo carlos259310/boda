@@ -2,26 +2,46 @@
 import { Image } from "astro:assets";
 import bostonBandana from "../assets/images/boston-bandana.png";
 import bostonShark from "../assets/images/boston-shark.png";
+import bostonTraje from "../assets/images/boston-traje.png";
+import bostonSuper from "../assets/images/boston-super.png";
 ---
 
-<div class="mascot-container" id="mascotContainer">
+<div class="mascot-container" id="mascotContainer" data-current-index="0">
     <div class="speech-bubble">
         <p id="mascot-text">¡Bienvenidos a nuestra boda!</p>
     </div>
     <div class="mascot-image-wrapper">
         <Image 
             src={bostonBandana} 
-            alt="Mascota Boston Terrier" 
+            alt="Mascota Boston Terrier Bandana" 
             width={200} 
             height={200} 
-            class="mascot-img main-img"
+            class="mascot-img active"
+            data-index="0"
         />
         <Image 
             src={bostonShark} 
             alt="Mascota Boston Terrier Shark" 
             width={200} 
             height={200} 
-            class="mascot-img hover-img"
+            class="mascot-img"
+            data-index="1"
+        />
+        <Image 
+            src={bostonTraje} 
+            alt="Mascota Boston Terrier Traje" 
+            width={200} 
+            height={200} 
+            class="mascot-img"
+            data-index="2"
+        />
+        <Image 
+            src={bostonSuper} 
+            alt="Mascota Boston Terrier Super" 
+            width={200} 
+            height={200} 
+            class="mascot-img"
+            data-index="3"
         />
     </div>
 </div>
@@ -37,6 +57,7 @@ import bostonShark from "../assets/images/boston-shark.png";
 
     const speechText = document.getElementById('mascot-text');
     const mascotContainer = document.getElementById('mascotContainer');
+    const mascotImages = document.querySelectorAll('.mascot-img');
     let messageIndex = 0;
 
     // Change message periodically
@@ -51,10 +72,24 @@ import bostonShark from "../assets/images/boston-shark.png";
         }
     }, 6000);
 
-    // Click interaction
+    // Click interaction to cycle through images
     mascotContainer?.addEventListener('click', () => {
         mascotContainer.classList.add('bounce');
-        mascotContainer.classList.toggle('shark-mode');
+        
+        // Cycle images
+        const currentIndex = parseInt(mascotContainer.getAttribute('data-current-index') || '0');
+        const nextIndex = (currentIndex + 1) % mascotImages.length;
+        
+        mascotImages.forEach((img, idx) => {
+            if (idx === nextIndex) {
+                img.classList.add('active');
+            } else {
+                img.classList.remove('active');
+            }
+        });
+        
+        mascotContainer.setAttribute('data-current-index', nextIndex.toString());
+
         setTimeout(() => {
             mascotContainer.classList.remove('bounce');
         }, 1000);
@@ -94,40 +129,20 @@ import bostonShark from "../assets/images/boston-shark.png";
         top: 0;
         left: 0;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .main-img {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-        z-index: 2;
-    }
-
-    .hover-img {
         opacity: 0;
         transform: scale(0.5) rotate(15deg);
         z-index: 1;
     }
-    
-    /* Hover state */
-    .mascot-container:hover .main-img {
-        opacity: 0;
-        transform: scale(0.5) rotate(-15deg);
-    }
-    
-    .mascot-container:hover .hover-img {
+
+    .mascot-img.active {
         opacity: 1;
         transform: scale(1) rotate(0deg);
+        z-index: 2;
     }
     
-    /* Toggle state for mobile */
-    .mascot-container.shark-mode .main-img {
-        opacity: 0;
-        transform: scale(0.5) rotate(-15deg);
-    }
-    
-    .mascot-container.shark-mode .hover-img {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
+    /* Hover effect on active image */
+    .mascot-container:hover .mascot-img.active {
+        transform: scale(1.1) rotate(-5deg);
     }
 
     .speech-bubble {
@@ -161,7 +176,6 @@ import bostonShark from "../assets/images/boston-shark.png";
     }
 
     .speech-bubble p {
-        font-family: var(--font-sans, sans-serif);
         font-size: 0.85rem;
         color: var(--color-primary-dark, #2E5C8A);
         margin: 0;

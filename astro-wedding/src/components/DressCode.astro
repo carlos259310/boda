@@ -1,39 +1,173 @@
 ---
+import { Image } from "astro:assets";
+import brownieFormal from "../assets/images/brownie-formal.png";
+import remmyFormal from "../assets/images/remmy-formal.png";
 ---
 <section id="vestuario" class="vestuario-section">
     <div class="container text-center">
         <h2 class="vestuario-title animate-on-scroll fade-up">Código de Vestuario</h2>
         
-        <div class="vestuario-icons-container animate-on-scroll fade-up delay-1">
-            <div class="icon-box">
-                <svg class="animated-icon woman-icon" viewBox="0 0 64 64">
-                    <path d="M32 8c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zM46 56h-28l2-16c0-6 3-10 6-12h8c3 2 6 6 6 12l2 16z" stroke="currentColor" stroke-width="1.5" fill="none" />
-                    <path d="M32 20c-5 0-9 4-9 9l-3 12h24l-3-12c0-5-4-9-9-9z" fill="currentColor" opacity="0.4" />
-                </svg>
-                <span class="dresscode-category">Mujeres</span>
+        <div class="vestuario-grid animate-on-scroll fade-up delay-1">
+            <!-- Mujeres -->
+            <div class="vestuario-card">
+                <div class="vestuario-img-wrapper">
+                    <Image src={brownieFormal} alt="Mujeres Dress Code" width={180} height={180} class="vestuario-img" />
+                </div>
+                <div class="vestuario-info">
+                    <h3 class="category-title">Mujeres</h3>
+                    <p class="dresscode-text">
+                        Vestido formal largo en colores claros y neutros.<br>
+                        <strong>Evitar:</strong> Blanco, beige, negro y azul.
+                    </p>
+                </div>
             </div>
-            <div class="icon-box">
-                <svg class="animated-icon man-icon" viewBox="0 0 64 64">
-                    <path d="M32 8c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zM42 22h-20c-2.2 0-4 1.8-4 4v20h28v-20c0-2.2-1.8-4-4-4z" stroke="currentColor" stroke-width="1.5" fill="none" />
-                    <path d="M32 22l-4 6h8l-4-6z" fill="currentColor" />
-                    <path d="M22 22v10m20-10v10" stroke="currentColor" stroke-width="1" />
-                </svg>
-                <span class="dresscode-category">Hombres</span>
-            </div>
-        </div>
 
-        <div class="dresscode animate-on-scroll fade-up delay-2">
-            <p class="dresscode-text">
-                Vestido formal largo en colores claros y neutros.<br>
-                <strong>Nos reservamos los colores:</strong> Blanco, beige, negro y azul en cualquier tonalidad.
-            </p>
-        </div>
-        
-        <div class="dresscode animate-on-scroll fade-up delay-3">
-            <p class="dresscode-text">
-                Traje formal.<br>
-                <strong>Nos reservamos los colores:</strong> Negro y azul en cualquier tonalidad.
-            </p>
+            <!-- Hombres -->
+            <div class="vestuario-card">
+                <div class="vestuario-img-wrapper">
+                    <Image src={remmyFormal} alt="Hombres Dress Code" width={180} height={180} class="vestuario-img" />
+                </div>
+                <div class="vestuario-info">
+                    <h3 class="category-title">Hombres</h3>
+                    <p class="dresscode-text">
+                        Traje formal.<br>
+                        <strong>Evitar:</strong> Negro y azul en cualquier tonalidad.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<style>
+    .vestuario-section {
+        padding: 100px 0;
+        background: linear-gradient(to bottom, #ffffff, #fdfbf7);
+    }
+
+    .vestuario-title {
+        font-family: var(--font-serif, serif);
+        font-size: 3rem;
+        color: var(--color-primary-dark, #2E5C8A);
+        margin-bottom: 60px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .vestuario-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 2px;
+        background: var(--color-accent, #d4a373);
+        opacity: 0.6;
+    }
+
+    .vestuario-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .vestuario-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 30px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid rgba(74, 144, 226, 0.08);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .vestuario-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, var(--color-primary, #4a90e2), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .vestuario-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 30px 60px rgba(74, 144, 226, 0.12);
+        border-color: rgba(74, 144, 226, 0.2);
+    }
+
+    .vestuario-card:hover::before {
+        opacity: 1;
+    }
+
+    .vestuario-img-wrapper {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid rgba(74, 144, 226, 0.1);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        transition: transform 0.5s ease;
+    }
+
+    .vestuario-card:hover .vestuario-img-wrapper {
+        transform: scale(1.05);
+        box-shadow: 0 15px 35px rgba(74, 144, 226, 0.15);
+    }
+
+    .vestuario-img {
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+    }
+
+    .category-title {
+        margin-bottom: 15px;
+    }
+
+    .dresscode-text {
+        max-width: 280px;
+    }
+
+    .dresscode-text strong {
+        color: #c0392b; /* Kept for emphasis as requested earlier */
+        display: block;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .vestuario-grid {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+        }
+        
+        .vestuario-title {
+            font-size: 2.2rem;
+        }
+
+        .vestuario-card {
+            padding: 30px 20px;
+        }
+
+        .vestuario-img-wrapper {
+            width: 160px;
+            height: 160px;
+        }
+    }
+</style>

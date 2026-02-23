@@ -1,0 +1,131 @@
+---
+import { Image } from "astro:assets";
+import bostonTraje from "../assets/images/boston-traje.png";
+---
+
+<div id="loader-wrapper" class="loader-wrapper">
+    <div class="loader-content">
+        <div class="loader-img-container">
+            <Image 
+                src={bostonTraje} 
+                alt="Loading Boston Terrier" 
+                width={200} 
+                height={200} 
+                class="loader-img"
+            />
+        </div>
+        <div class="loader-line-container">
+            <div class="loader-line"></div>
+        </div>
+        <p class="loader-text">Preparando todo para el gran día...</p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("loader-wrapper");
+        
+        // Ensure it lasts at least 2.5 seconds for branding, but no more than 6 if it loads instantly
+        // The user asked for "about 3 seconds"
+        // Increased duration for a more durable feel as requested
+        setTimeout(() => {
+            if (loader) {
+                loader.classList.add("fade-out");
+                setTimeout(() => {
+                    loader.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }, 800);
+            }
+        }, 4000);
+    });
+
+    // Fallback if load event takes too long or fails
+    setTimeout(() => {
+        const loader = document.getElementById("loader-wrapper");
+        if (loader && !loader.classList.contains("fade-out")) {
+            loader.classList.add("fade-out");
+            setTimeout(() => {
+                loader.style.display = "none";
+                document.body.style.overflow = "auto";
+            }, 800);
+        }
+    }, 6000);
+</script>
+
+<style>
+    .loader-wrapper {
+        position: fixed;
+        inset: 0;
+        background: #ffffff;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .loader-wrapper.fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .loader-img-container {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 25px;
+        animation: loaderBounce 2s ease-in-out infinite;
+    }
+
+    .loader-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .loader-line-container {
+        width: 120px;
+        height: 3px;
+        background: #f0f0f0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .loader-line {
+        width: 50%;
+        height: 100%;
+        background: var(--color-primary, #4A90E2);
+        border-radius: 10px;
+        animation: loaderSlide 1.5s ease-in-out infinite;
+    }
+
+    .loader-text {
+        font-size: 1.1rem;
+        color: var(--color-primary-dark, #2E5C8A);
+        letter-spacing: 1px;
+        margin: 0;
+        font-style: italic;
+    }
+
+    @keyframes loaderBounce {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-15px) scale(1.05); }
+    }
+
+    @keyframes loaderSlide {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(200%); }
+    }
+
+    /* Prevent scrolling while loading */
+    :global(body) {
+        overflow: hidden;
+    }
+</style>

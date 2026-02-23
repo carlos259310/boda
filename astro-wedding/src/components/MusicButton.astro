@@ -18,15 +18,40 @@
     const audio = document.getElementById("weddingMusic") as HTMLAudioElement;
     let isPlaying = false;
 
+    const playMusic = () => {
+        if (!isPlaying && audio) {
+            audio.play().then(() => {
+                isPlaying = true;
+                musicBtn?.classList.add("playing");
+            }).catch(e => console.log('Autoplay blocked or failed', e));
+        }
+    };
+
+    const stopMusic = () => {
+        if (isPlaying && audio) {
+            audio.pause();
+            isPlaying = false;
+            musicBtn?.classList.remove("playing");
+        }
+    };
+
+    // Try to play on first click anywhere in the document (the interaction trick)
+    const handleFirstInteraction = () => {
+        playMusic();
+        document.removeEventListener("click", handleFirstInteraction);
+        document.removeEventListener("touchstart", handleFirstInteraction);
+    };
+
+    document.addEventListener("click", handleFirstInteraction);
+    document.addEventListener("touchstart", handleFirstInteraction);
+
     if (musicBtn && audio) {
-        musicBtn.addEventListener("click", () => {
-            isPlaying = !isPlaying;
+        musicBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent the document listener from firing again if it hasn't yet
             if (isPlaying) {
-                musicBtn.classList.add("playing");
-                audio.play().catch(e => console.log('Audio play failed', e));
+                stopMusic();
             } else {
-                musicBtn.classList.remove("playing");
-                audio.pause();
+                playMusic();
             }
         });
     }

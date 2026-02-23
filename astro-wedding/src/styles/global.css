@@ -79,7 +79,26 @@ body {
 /* Typography Pairing */
 h1, h2, h3, .section-title, .hero-subtitle, .countdown-title, .evento-title, .vestuario-title, .favoritas-title, .compartir-title {
   font-family: var(--font-serif);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 3rem; /* Slightly larger for consistent impact */
+  margin-bottom: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+h4 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
 }
 
 .nombre, .nav-logo, .footer-name, .footer-names {
@@ -87,9 +106,16 @@ h1, h2, h3, .section-title, .hero-subtitle, .countdown-title, .evento-title, .ve
   font-weight: 400;
 }
 
-p, span, div, a, li, button, .countdown-label, .dresscode-text, .footer-quote {
+p, span, div, a, li, button, input, textarea, .countdown-label, .dresscode-text, .footer-quote {
   font-family: var(--font-base);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.015em;
+  color: var(--color-text-medium);
+  line-height: 1.7;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--color-text-dark);
 }
 
 /* ===== NAVIGATION ===== */

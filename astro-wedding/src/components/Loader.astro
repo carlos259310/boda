@@ -25,9 +25,7 @@ import bostonTraje from "../assets/images/boston-traje.png";
     window.addEventListener("load", () => {
         const loader = document.getElementById("loader-wrapper");
         
-        // Ensure it lasts at least 2.5 seconds for branding, but no more than 6 if it loads instantly
-        // The user asked for "about 3 seconds"
-        // Increased duration for a more durable feel as requested
+        // Duration for a more durable feel as requested previously
         setTimeout(() => {
             if (loader) {
                 loader.classList.add("fade-out");
@@ -39,7 +37,7 @@ import bostonTraje from "../assets/images/boston-traje.png";
         }, 4000);
     });
 
-    // Fallback if load event takes too long or fails
+    // Fallback if load event takes too long
     setTimeout(() => {
         const loader = document.getElementById("loader-wrapper");
         if (loader && !loader.classList.contains("fade-out")) {

@@ -410,48 +410,7 @@ strong {
   transition-delay: 0.9s;
 }
 
-/* ===== MUSIC BUTTON ===== */
-.music-button {
-  position: fixed;
-  top: calc(var(--nav-height) + 15px);
-  right: 2rem;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: var(--color-white);
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 20px rgba(143, 169, 188, 0.2);
-  z-index: 999;
-}
-
-.music-button:hover {
-  background: var(--color-primary);
-  color: var(--color-white);
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 6px 30px rgba(143, 169, 188, 0.4);
-}
-
-.music-button.playing {
-  background: var(--color-primary);
-  color: var(--color-white);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.music-icon {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.3s ease;
-}
-
-.music-button:hover .music-icon {
-  transform: scale(1.1);
-}
+/* Music Button styles moved to component */
 
 /* ===== HERO SECTION ===== */
 .hero {

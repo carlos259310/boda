@@ -1,19 +1,13 @@
 ---
+import { Image } from "astro:assets";
+import hostalJosheImg from "../assets/images/hostal-joshe.png";
 ---
 <section id="ceremonia" class="ceremonia-section animate-on-scroll fade-up">
     <div class="container text-center">
         <div class="evento">
             <div class="evento-flex">
-                <div class="evento-icon-wrapper">
-                    <svg class="evento-icon" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
-                        <path d="M32 8 L32 4 M20 10 L16 6 M44 10 L48 6" stroke-linecap="round"/>
-                        <path d="M32 16 L32 20 L28 28 L36 28 L32 20 Z" stroke-linejoin="round"/>
-                        <rect x="18" y="28" width="28" height="28" rx="2"/>
-                        <path d="M24 28 L24 56 M40 28 L40 56"/>
-                        <path d="M18 40 L46 40"/>
-                        <circle cx="32" cy="20" r="2" fill="currentColor"/>
-                        <path d="M28 48 L36 48" stroke-linecap="round" stroke-width="3"/>
-                    </svg>
+                <div class="evento-image-wrapper">
+                    <Image src={hostalJosheImg} alt="Hostal Joshe" width={200} height={200} class="evento-image" />
                 </div>
                 <div class="evento-info">
                     <h3 class="evento-title">Ceremonia y Recepción</h3>
@@ -74,16 +68,30 @@
     text-align: left;
 }
 
-.evento-icon-wrapper {
-    flex: 0 0 72px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.evento-image-wrapper {
+    flex: 0 0 160px;
+    height: 160px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    border: 1px solid rgba(74, 144, 226, 0.1);
+}
+
+.evento-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.evento-image-wrapper:hover .evento-image {
+    transform: scale(1.05);
 }
 
 .evento-info {
     flex: 1;
-    min-width: 280px;
+    min-width: 200px; /* Reduced from 280px to allow better wrapping on very small screens */
 }
 
 .evento-title {

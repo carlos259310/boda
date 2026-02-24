@@ -1,40 +1,146 @@
 ---
 ---
-<section class="favoritas-section">
+<section class="favoritas-section" id="personas-importantes">
     <div class="container text-center">
-        <h3 class="favoritas-title animate-on-scroll fade-up">Personas Favoritas</h3>
-        <p class="favoritas-subtitle animate-on-scroll fade-up delay-1">Con la bendición de nuestros padres...</p>
+        <h3 class="favoritas-title animate-on-scroll fade-up">Personas Importantes</h3>
+        <p class="favoritas-subtitle animate-on-scroll fade-up delay-1">Con la bendición de nuestras madres...</p>
         
         <div class="padres-container">
             <div class="padres-group animate-on-scroll fade-left delay-2">
-                <div class="padres-icon-wrapper">
-                    <svg class="padres-icon" viewBox="0 0 64 64">
-                        <path d="M32 16 C32 16 28 12 28 8 C28 4 32 4 32 4 C32 4 36 4 36 8 C36 12 32 16 32 16" 
-                              stroke-linejoin="round"/>
-                        <path d="M20 28 L32 32 L44 28" stroke-linejoin="round"/>
-                        <path d="M32 32 L32 48 M20 48 L44 48"/>
-                    </svg>
-                </div>
                 <p class="padres-label">Madre de la Novia</p>
                 <div class="padres-names">
-                    <p class="padres-name">Madre de la Novia</p>
+                    <p class="padres-name">Claudia Patricia Pinzon</p>
                 </div>
             </div>
             
             <div class="padres-group animate-on-scroll fade-right delay-3">
-                <div class="padres-icon-wrapper">
-                    <svg class="padres-icon" viewBox="0 0 64 64">
-                        <path d="M32 16 C32 16 28 12 28 8 C28 4 32 4 32 4 C32 4 36 4 36 8 C36 12 32 16 32 16" 
-                              stroke-linejoin="round"/>
-                        <path d="M20 28 L32 32 L44 28" stroke-linejoin="round"/>
-                        <path d="M32 32 L32 48 M20 48 L44 48"/>
-                    </svg>
-                </div>
                 <p class="padres-label">Madre del Novio</p>
                 <div class="padres-names">
-                    <p class="padres-name">Madre del Novio</p>
+                    <p class="padres-name">Liliana Cano Lozano</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    .favoritas-section {
+        padding: 100px 0;
+        background: linear-gradient(to bottom, #fdfbf7, #ffffff);
+    }
+
+    .favoritas-title {
+        font-family: var(--font-serif, serif);
+        font-size: 3rem;
+        color: var(--color-primary-dark, #2E5C8A);
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .favoritas-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 2px;
+        background: var(--color-accent, #d4a373);
+        opacity: 0.6;
+    }
+
+    .favoritas-subtitle {
+        font-family: var(--font-sans, sans-serif);
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 60px;
+        font-style: italic;
+    }
+
+    .padres-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .padres-group {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(212, 163, 115, 0.2);
+        border-radius: 20px;
+        padding: 40px;
+        flex: 1;
+        min-width: 240px;
+        max-width: 400px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .padres-group::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, var(--color-accent, #d4a373), transparent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .padres-group:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(212, 163, 115, 0.15);
+        border-color: rgba(212, 163, 115, 0.4);
+    }
+
+    .padres-group:hover::before {
+        opacity: 1;
+    }
+
+    .padres-label {
+        font-family: var(--font-sans, sans-serif);
+        font-size: 0.9rem;
+        color: var(--color-accent, #d4a373);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .padres-name {
+        font-family: var(--font-serif, serif);
+        font-size: 1.8rem;
+        color: var(--color-primary-dark, #2E5C8A);
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .favoritas-section {
+            padding: 60px 0;
+        }
+        
+        .favoritas-title {
+            font-size: 2.2rem;
+        }
+
+        .padres-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .padres-group {
+            width: 100%;
+            padding: 30px 20px;
+        }
+    }
+</style>

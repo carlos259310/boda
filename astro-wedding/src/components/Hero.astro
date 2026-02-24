@@ -8,34 +8,15 @@
     </div>
 
 <style>
-    .hero-title {
-        font-family: var(--font-script, cursive);
-        font-size: 10rem; /* Adjusted for slightly better balance with global scale */
-        margin-bottom: 1.5rem;
-        line-height: 1.1;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    .hero-subtitle {
-        font-size: 1.6rem;
-        letter-spacing: 0.6em;
-        text-transform: uppercase;
-        color: var(--color-text-medium);
-        margin-top: 0.5rem;
-    }
-
-    @media (max-width: 768px) {
-        .hero-title {
-            font-size: 5.5rem;
-        }
-        .hero-subtitle {
-            font-size: 1.1rem;
-            letter-spacing: 0.3em;
-        }
+    .hero-wave {
+        position: absolute;
+        bottom: -2px; /* Slight overlap to prevent gaps */
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        z-index: 10;
+        pointer-events: none;
     }
 </style>
     <div class="hero-wave">

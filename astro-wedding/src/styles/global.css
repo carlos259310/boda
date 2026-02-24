@@ -85,12 +85,12 @@ h1, h2, h3, .section-title, .hero-subtitle, .countdown-title, .evento-title, .ve
 }
 
 h2 {
-  font-size: 3rem; /* Slightly larger for consistent impact */
+  font-size: clamp(2.2rem, 5vw, 3rem); /* Fluid scaling */
   margin-bottom: 2.5rem;
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 4vw, 2rem);
   margin-bottom: 1.5rem;
 }
 
@@ -446,11 +446,11 @@ strong {
 
 .hero-title {
   font-family: var(--font-script);
-  font-size: 9rem; /* Significantly enlarged */
+  font-size: clamp(3.5rem, 15vw, 9rem); /* Smooth scaling from mobile to desktop */
   color: var(--color-primary);
   margin-bottom: 2rem;
   font-weight: 400;
-  line-height: 1.4; /* Adjusted for better spacing at larger scale */
+  line-height: 1.2;
   padding: 1rem 0.5rem;
   display: inline-block;
   animation: float 6s ease-in-out infinite, shimmer 10s linear infinite, glowPulse 4s ease-in-out infinite;
@@ -468,7 +468,6 @@ strong {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  /* Subtle drop shadow to help legibility without washing out */
   filter: drop-shadow(0 4px 15px rgba(74, 144, 226, 0.15));
 }
 
@@ -504,9 +503,9 @@ strong {
 
 .hero-subtitle {
   font-family: var(--font-serif);
-  font-size: 1.4rem; /* Slightly larger */
+  font-size: clamp(1rem, 3vw, 1.4rem);
   color: var(--color-text-medium);
-  letter-spacing: 0.5em; /* Premium spacing */
+  letter-spacing: clamp(0.2rem, 1vw, 0.5rem);
   text-transform: uppercase;
   font-weight: 600;
   animation: fadeIn 2.5s ease-out;
@@ -585,12 +584,12 @@ strong {
 
 .nombre {
   font-family: var(--font-script);
-  font-size: 5.5rem;
+  font-size: clamp(3rem, 10vw, 5.5rem);
   color: var(--color-primary);
   font-weight: 400;
   margin: 0.5rem 0;
-  line-height: 1.8;
-  padding: 1.5rem 0.5rem; 
+  line-height: 1.5;
+  padding: 1rem 0.5rem; 
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -606,7 +605,7 @@ strong {
 
 .y-separator {
   font-family: var(--font-script);
-  font-size: 3rem;
+  font-size: clamp(2rem, 6vw, 3rem);
   color: var(--color-primary-light);
   margin: 0 1rem;
   display: inline-block;

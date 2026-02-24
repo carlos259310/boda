@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Mascot from '../components/Mascot.astro';
 import Loader from '../components/Loader.astro';
+import faviconImg from '../assets/images/boston-traje.png';
 
 interface Props {
 	title?: string;
@@ -15,7 +16,7 @@ const { title = "Manuel & Andrea | Nuestra Boda" } = Astro.props;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href={faviconImg.src} />
     <title>{title}</title>
     
     <!-- Google Fonts -->

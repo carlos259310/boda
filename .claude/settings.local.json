@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(SOURCE=\"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Desktop\\\\carlos\\\\boda\\\\Proyecto\\\\astro-wedding\"\nDEST=\"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Desktop\\\\carlos\\\\boda\\\\Proyecto\\\\boda-clonado\\\\astro-wedding\"\ncp \"$SOURCE/src/styles/global.css\" \"$DEST/src/styles/global.css\"\ncp \"$SOURCE/src/components/Hero.astro\" \"$DEST/src/components/Hero.astro\"\ncp \"$SOURCE/src/components/VideoSection.astro\" \"$DEST/src/components/VideoSection.astro\"\ncp \"$SOURCE/src/components/Gallery.astro\" \"$DEST/src/components/Gallery.astro\"\ncp \"$SOURCE/src/components/RSVP.astro\" \"$DEST/src/components/RSVP.astro\"\ncp \"$SOURCE/src/components/Countdown.astro\" \"$DEST/src/components/Countdown.astro\"\ncp \"$SOURCE/src/components/DateSection.astro\" \"$DEST/src/components/DateSection.astro\"\ncp \"$SOURCE/src/components/CompartirSection.astro\" \"$DEST/src/components/CompartirSection.astro\"\ncp \"$SOURCE/src/layouts/Layout.astro\" \"$DEST/src/layouts/Layout.astro\"\necho \"Copia completada\")",
+      "Bash(git:*)",
+      "Bash(cp:*)"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import Mascot from '../components/Mascot.astro';
+import Loader from '../components/Loader.astro';
+import faviconImg from '../assets/images/boston-traje.png';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+    title = "Manuel & Andrea | Nuestra Boda",
+    description = "Acompáñanos a celebrar nuestro matrimonio el Sábado 28 de Noviembre de 2026 en el Hostal Joshe, Santa Helena, El Cerrito, Valle del Cauca."
+} = Astro.props;
+
+const ogImage = "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href={faviconImg.src} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Pinyon+Script&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <Loader />
+    <slot />
+    <Mascot />
+    
+    <!-- External JavaScript will be added at the end of the body -->
+</body>
+</html>

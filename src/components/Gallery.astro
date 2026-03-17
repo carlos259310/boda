@@ -1,0 +1,251 @@
+---
+import { getImage } from "astro:assets";
+import gallery1 from "../assets/images/gallery-1.jpg";
+import gallery2 from "../assets/images/gallery-2.jpg";
+import gallery3 from "../assets/images/gallery-3.jpg";
+import gallery4 from "../assets/images/gallery-4.jpg";
+
+const rawImages = [
+    {
+        src: gallery1,
+        alt: 'Momentos especiales 1'
+    },
+    {
+        src: gallery2,
+        alt: 'Momentos especiales 2'
+    },
+    {
+        src: gallery3,
+        alt: 'Momentos especiales 3'
+    },
+    {
+        src: gallery4,
+        alt: 'Momentos especiales 4'
+    }
+];
+
+const images = await Promise.all(
+    rawImages.map(async (img) => {
+        const optimizedImage = await getImage({src: img.src, format: 'webp'});
+        return {
+            ...img,
+            url: optimizedImage.src
+        }
+    })
+);
+---
+<section id="galeria" class="galeria-section">
+    <div class="container text-center">
+        <h3 class="galeria-title animate-on-scroll fade-up">Galería</h3>
+        
+        <div class="carousel-wrapper animate-on-scroll scale-in delay-1">
+            <div class="slider-container" id="gallerySlider">
+                {images.map((img, index) => (
+                    <div class={`slide ${index === 0 ? 'active' : ''}`} style={`background-image: url('${img.url}');`}></div>
+                ))}
+            </div>
+
+            <!-- Botones de navegación -->
+            <button class="carousel-control prev" id="prevBtn" aria-label="Imagen anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="carousel-control next" id="nextBtn" aria-label="Siguiente imagen">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </div>
+
+        <div class="slider-dots animate-on-scroll fade-up delay-2">
+            {images.map((_, index) => (
+                <span class={`dot ${index === 0 ? 'active' : ''}`} data-index={index}></span>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .carousel-wrapper {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        height: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .slider-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .slide {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out, transform 1.2s ease-out;
+        background-size: cover;
+        background-position: center;
+        transform: scale(1.1);
+    }
+
+
+    .slide.active {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 1;
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: all 0.3s ease;
+    }
+
+    .carousel-control:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-control svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--color-primary);
+        opacity: 0.3;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dot.active {
+        opacity: 1;
+        transform: scale(1.4);
+        background: var(--color-primary);
+        box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .carousel-wrapper {
+            height: 350px;
+        }
+        .carousel-control {
+            width: 40px;
+            height: 40px;
+        }
+    }
+</style>
+
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const totalSlides = slides.length;
+    let autoPlayInterval: any;
+
+    function updateCarousel(index: number) {
+        slides.forEach((slide, i) => {
+            if (slide instanceof HTMLElement) {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            if (dot instanceof HTMLElement) {
+                dot.classList.toggle('active', i === index);
+            }
+        });
+
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        const nextIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel(nextIndex);
+    }
+
+    function prevSlide() {
+        const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateCarousel(prevIndex);
+    }
+
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+    }
+
+    nextBtn?.addEventListener("click", () => {
+        nextSlide();
+        resetAutoPlay();
+    });
+
+    prevBtn?.addEventListener("click", () => {
+        prevSlide();
+        resetAutoPlay();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            updateCarousel(index);
+            resetAutoPlay();
+        });
+    });
+
+    // Iniciar auto-play
+    startAutoPlay();
+
+    // Pausar en hover
+    const wrapper = document.querySelector('.carousel-wrapper');
+    wrapper?.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+    wrapper?.addEventListener('mouseleave', startAutoPlay);
+
+    // Swipe táctil para móvil
+    let touchStartX = 0;
+    wrapper?.addEventListener('touchstart', (e) => {
+        touchStartX = (e as TouchEvent).changedTouches[0].screenX;
+    }, { passive: true });
+    wrapper?.addEventListener('touchend', (e) => {
+        const diff = touchStartX - (e as TouchEvent).changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) {
+            diff > 0 ? nextSlide() : prevSlide();
+            resetAutoPlay();
+        }
+    }, { passive: true });
+</script>

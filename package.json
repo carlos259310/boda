@@ -1,7 +1,14 @@
 {
-  "name": "boda-root",
-  "private": true,
+  "name": "astro-wedding",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "build": "cd astro-wedding && npm install --no-audit --no-fund && npm run build && mkdir -p ../dist && cp -r dist/* ../dist/ || true"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.17.1"
   }
 }

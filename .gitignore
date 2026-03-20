@@ -1,0 +1,23 @@
+# Root generated output
+.astro/
+dist/
+node_modules/
+
+# Nested Astro app generated output
+astro-wedding/.astro/
+astro-wedding/dist/
+astro-wedding/node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.production
+
+# OS/editor files
+.DS_Store
+.idea/

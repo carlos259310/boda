@@ -1,0 +1,44 @@
+---
+---
+<script>
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -80px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        entry.target.classList.add("visible");
+                    }, 100);
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Initial observation
+    document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+        observer.observe(el);
+    });
+
+    // Handle smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href === "#") return;
+
+            e.preventDefault();
+            const target = document.querySelector(href || "");
+
+            if (target) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+            }
+        });
+    });
+</script>

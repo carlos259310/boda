@@ -1,0 +1,64 @@
+---
+---
+<section id="countdown" class="countdown-section">
+    <div class="container text-center">
+        <h3 class="countdown-title animate-on-scroll fade-up">Faltan...</h3>
+        <div class="countdown-timer">
+            <div class="countdown-item animate-on-scroll scale-in delay-1">
+                <span class="countdown-number" id="days">0</span>
+                <span class="countdown-label">Días</span>
+            </div>
+            <span class="countdown-separator">:</span>
+            <div class="countdown-item animate-on-scroll scale-in delay-2">
+                <span class="countdown-number" id="hours">0</span>
+                <span class="countdown-label">Horas</span>
+            </div>
+            <span class="countdown-separator">:</span>
+            <div class="countdown-item animate-on-scroll scale-in delay-3">
+                <span class="countdown-number" id="minutes">0</span>
+                <span class="countdown-label">Minutos</span>
+            </div>
+            <span class="countdown-separator">:</span>
+            <div class="countdown-item animate-on-scroll scale-in delay-4">
+                <span class="countdown-number" id="seconds">0</span>
+                <span class="countdown-label">Segundos</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const weddingDate = new Date('2026-11-28T17:00:00').getTime();
+    const countdownElements = {
+        days: document.getElementById("days"),
+        hours: document.getElementById("hours"),
+        minutes: document.getElementById("minutes"),
+        seconds: document.getElementById("seconds"),
+    };
+
+    function updateCountdown() {
+        const now = Date.now();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+            const countdownContainer = document.getElementById("countdown");
+            if (countdownContainer) {
+                countdownContainer.innerHTML = '<div class="countdown-finished" style="padding: 2rem;"><p class="countdown-title" style="margin-bottom: 1rem;">¡El gran día ha llegado!</p></div>';
+            }
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (countdownElements.days) countdownElements.days.textContent = days < 10 ? "0" + days : days.toString();
+        if (countdownElements.hours) countdownElements.hours.textContent = hours < 10 ? "0" + hours : hours.toString();
+        if (countdownElements.minutes) countdownElements.minutes.textContent = minutes < 10 ? "0" + minutes : minutes.toString();
+        if (countdownElements.seconds) countdownElements.seconds.textContent = seconds < 10 ? "0" + seconds : seconds.toString();
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>

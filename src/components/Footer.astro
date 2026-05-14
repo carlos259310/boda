@@ -1,20 +1,117 @@
 ---
+import { getImage } from "astro:assets";
+import boda3 from "../assets/images/boda_3.jpeg";
+
+const photo = await getImage({ src: boda3, format: 'webp', width: 200, height: 200, quality: 85 });
 ---
 <footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-names animate-on-scroll fade-up">
-                <span class="footer-name">Manuel</span>
-                <span class="y-separator-footer">y</span>
-                <span class="footer-name">Andrea</span>
-            </p>
-            <p class="footer-quote animate-on-scroll fade-up delay-1">
-                Nos encantaría contar con tu presencia en este gran día.
-            </p>
-            <div class="footer-divider animate-on-scroll scale-in delay-2"></div>
-            <p class="footer-credits">
-                Elaborado por: <strong>Ing. Carlos Rodriguez</strong> - Desarrollador Web
-            </p>
-        </div>
+    <div class="footer-inner">
+        <img
+            src={photo.src}
+            alt="Manuel y Andrea"
+            class="footer-photo"
+            width="80"
+            height="80"
+            loading="lazy"
+        />
+        <p class="footer-names">
+            <span>Manuel</span>
+            <span class="footer-sep">y</span>
+            <span>Andrea</span>
+        </p>
+        <p class="footer-date">28 · 11 · 2026</p>
+        <p class="footer-credits">
+            Elaborado por <strong>Ing. Carlos Rodriguez</strong> · Desarrollador Web
+        </p>
     </div>
 </footer>
+
+<style>
+    .footer {
+        background: #f8fafb;
+        border-top: 1px solid rgba(74, 144, 226, 0.1);
+        padding: 2.8rem 1rem 2rem;
+        text-align: center;
+    }
+
+    .footer-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .footer-photo {
+        width: 82px;
+        height: 82px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center top;
+        border: 2px solid rgba(201, 169, 110, 0.5);
+        box-shadow:
+            0 0 0 5px rgba(74, 144, 226, 0.06),
+            0 6px 20px rgba(74, 144, 226, 0.1);
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .footer-names {
+        font-family: var(--font-script, "Pinyon Script", cursive);
+        font-size: 2.1rem;
+        color: var(--color-primary-dark, #2E5C8A);
+        margin: 0;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .footer-sep {
+        font-size: 1.3rem;
+        color: var(--color-gold, #C9A96E);
+        opacity: 0.9;
+    }
+
+    .footer-date {
+        font-family: var(--font-sans, "Poppins", sans-serif);
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        color: var(--color-text-lighter, #95a5a6);
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .footer-credits {
+        font-family: var(--font-sans, "Poppins", sans-serif);
+        font-size: 0.68rem;
+        color: var(--color-text-lighter, #95a5a6);
+        margin: 0.1rem 0 0;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(74, 144, 226, 0.08);
+        width: 100%;
+        line-height: 1.5;
+    }
+
+    .footer-credits strong {
+        color: var(--color-primary-dark, #2E5C8A);
+        font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+        .footer {
+            padding: 2.2rem 1rem 1.6rem;
+        }
+        .footer-inner {
+            gap: 0.5rem;
+        }
+        .footer-photo {
+            width: 68px;
+            height: 68px;
+        }
+        .footer-names {
+            font-size: 1.8rem;
+        }
+    }
+</style>

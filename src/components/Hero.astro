@@ -1,7 +1,22 @@
 ---
+import { getImage } from "astro:assets";
+import boda1 from "../assets/images/boda_1.jpeg";
+import boda4 from "../assets/images/boda_4.jpeg";
+import boda7 from "../assets/images/boda_7.jpeg";
+
+const heroImages = await Promise.all([
+    getImage({ src: boda1, format: 'webp', width: 1440, quality: 70 }),
+    getImage({ src: boda4, format: 'webp', width: 1440, quality: 70 }),
+    getImage({ src: boda7, format: 'webp', width: 1440, quality: 70 }),
+]);
 ---
 <section id="inicio" class="hero">
-    <div class="hero-bg-placeholder" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.45; z-index: 0;"></div>
+    {heroImages.map((img, i) => (
+        <div
+            class={`hero-slide hero-slide--${i} ${i === 0 ? 'active' : ''}`}
+            style={`background-image: url('${img.src}');`}
+        ></div>
+    ))}
 
     <div class="hero-content" style="position: relative; z-index: 2;">
         <h1 class="hero-title">Manuel <span class="y-separator-hero">y</span> Andrea</h1>
@@ -25,6 +40,47 @@
 </section>
 
 <style>
+    /* Primer slide aparece instantáneamente; los siguientes con crossfade suave */
+    .hero-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        z-index: 0;
+    }
+
+    /* Primer slide sin transición → aparece de golpe al cargar */
+    .hero-slide--0 {
+        opacity: 1;
+    }
+
+    /* Transición habilitada solo cuando JS marca la sección como lista */
+    .hero.ready .hero-slide {
+        transition: opacity 1.6s ease-in-out;
+    }
+
+    /* Ken Burns — dirección diferente por slide */
+    .hero-slide--0.active { animation: kenburns-0 20s ease-in-out forwards; }
+    .hero-slide--1.active { animation: kenburns-1 20s ease-in-out forwards; }
+    .hero-slide--2.active { animation: kenburns-2 20s ease-in-out forwards; }
+
+    @keyframes kenburns-0 {
+        from { transform: scale(1) translate(0, 0); }
+        to   { transform: scale(1.07) translate(-1.5%, -0.5%); }
+    }
+    @keyframes kenburns-1 {
+        from { transform: scale(1) translate(0, 0); }
+        to   { transform: scale(1.07) translate(1.5%, -1%); }
+    }
+    @keyframes kenburns-2 {
+        from { transform: scale(1.05) translate(1%, 0); }
+        to   { transform: scale(1) translate(-1%, 0.5%); }
+    }
+
     .hero-wave {
         position: absolute;
         bottom: -2px;
@@ -36,3 +92,29 @@
         pointer-events: none;
     }
 </style>
+
+<script>
+    const hero = document.querySelector('.hero') as HTMLElement | null;
+    const heroSlides = Array.from(document.querySelectorAll<HTMLElement>('.hero-slide'));
+    const total = heroSlides.length;
+    let heroIndex = 0;
+
+    // Habilitar transiciones después de que el primer frame haya pintado
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            hero?.classList.add('ready');
+        });
+    });
+
+    function goToSlide(index: number) {
+        heroSlides[heroIndex].classList.remove('active');
+        heroSlides[heroIndex].style.opacity = '0';
+        heroIndex = index;
+        heroSlides[heroIndex].classList.add('active');
+        heroSlides[heroIndex].style.opacity = '1';
+    }
+
+    setInterval(() => {
+        goToSlide((heroIndex + 1) % total);
+    }, 7000);
+</script>

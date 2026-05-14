@@ -1,14 +1,14 @@
 ---
 import { getImage } from "astro:assets";
-import gallery1 from "../assets/images/gallery-1.jpg";
+import boda5 from "../assets/images/boda_5.jpeg";
 
-const optimizedImage = await getImage({src: gallery1, format: 'webp'});
+const optimizedImage = await getImage({ src: boda5, format: 'webp', width: 1400, quality: 80 });
 ---
 <section class="image-section animate-on-scroll scale-in">
     <div class="image-placeholder" style={`background-image: url('${optimizedImage.src}'); background-size: cover; background-position: center; opacity: 1;`}></div>
     <div class="image-wave-bottom">
         <svg class="wave-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
-            <path d="M0,50 C300,80 500,20 600,35 C700,50 900,80 1200,50 L1200,100 L0,100 Z" 
+            <path d="M0,50 C300,80 500,20 600,35 C700,50 900,80 1200,50 L1200,100 L0,100 Z"
                   fill="#FFFFFF"/>
         </svg>
     </div>

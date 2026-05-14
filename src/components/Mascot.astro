@@ -146,33 +146,30 @@ import bostonSuper from "../assets/images/boston-super.png";
     }
 
     .speech-bubble {
-        background: rgba(255, 255, 255, 0.95);
+        background: #ffffff;
         padding: 10px 15px;
-        border-radius: 15px;
-        border-bottom-right-radius: 2px;
-        border-bottom-left-radius: 15px;
-        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.15);
-        margin-bottom: 10px;
+        border-radius: 14px;
+        box-shadow: 0 4px 18px rgba(74, 144, 226, 0.16);
+        margin-bottom: 12px;
         max-width: 180px;
         text-align: center;
         position: relative;
-        transform-origin: bottom right;
         animation: fadeInBubble 0.5s ease forwards 1s;
-        border: 1px solid rgba(74, 144, 226, 0.1);
-        backdrop-filter: blur(5px);
+        border: 1px solid rgba(74, 144, 226, 0.12);
     }
 
+    /* Triángulo apuntador sin bordes visibles */
     .speech-bubble::after {
         content: '';
         position: absolute;
-        bottom: -6px;
-        right: 15px;
-        width: 12px;
-        height: 12px;
-        background: rgba(255, 255, 255, 0.95);
-        transform: rotate(45deg);
-        border-right: 1px solid rgba(74, 144, 226, 0.1);
-        border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+        bottom: -8px;
+        right: 18px;
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 0px solid transparent;
+        border-top: 8px solid #ffffff;
+        filter: drop-shadow(0 2px 2px rgba(74, 144, 226, 0.1));
     }
 
     .speech-bubble p {

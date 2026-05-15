@@ -1,25 +1,166 @@
 ---
+import qrCode from "../assets/images/EventPics-QR-Code-2048.svg";
+const eventpicsUrl = "https://app.eventpics.net/XAtFxc9eSXTb";
 ---
 <section class="compartir-section">
     <div class="container text-center">
-        <div class="compartir-image animate-on-scroll scale-in" style="background-image: url('https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=2072&auto=format&fit=crop'); background-size: cover; background-position: center; opacity: 0.55;"></div>
-        <h3 class="compartir-title animate-on-scroll fade-up delay-1">¡Comparte tus fotos y videos de nuestra boda aquí!</h3>
-        <p class="compartir-subtitle animate-on-scroll fade-up delay-2">Sube tus recuerdos con un clic</p>
-        <a href="#" class="btn animate-on-scroll scale-in delay-3">
-            <svg style="width:18px;height:18px;flex-shrink:0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
+        <div class="compartir-icon animate-on-scroll scale-in">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+        </div>
+
+        <h3 class="compartir-title animate-on-scroll fade-up delay-1">Comparte tus fotos</h3>
+        <p class="compartir-subtitle animate-on-scroll fade-up delay-2">
+            Cada foto es un recuerdo. Escanea el código o toca el botón<br>y súbelas al álbum compartido de nuestra boda.
+        </p>
+
+        <div class="qr-wrapper animate-on-scroll scale-in delay-2">
+            <img
+                src={qrCode.src ?? qrCode}
+                alt="Código QR para compartir fotos de la boda"
+                class="qr-img"
+                width="200"
+                height="200"
+                loading="lazy"
+            />
+            <p class="qr-hint">Escanea con la cámara de tu celular</p>
+        </div>
+
+        <a
+            href={eventpicsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn compartir-btn animate-on-scroll scale-in delay-3"
+            aria-label="Abrir EventPics para compartir fotos de la boda"
+        >
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                 <polyline points="17 8 12 3 7 8"/>
                 <line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
-            Subir Fotos/Videos
+            Subir mis fotos
         </a>
+
     </div>
 </section>
 
 <style>
-    .btn {
+    .compartir-section {
+        padding: var(--spacing-lg) 0;
+        background: linear-gradient(160deg, #f0f8ff 0%, #e3f2fd 50%, #fdfbf7 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .compartir-section::before {
+        content: '';
+        position: absolute;
+        top: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(74, 144, 226, 0.08) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .compartir-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-md);
+    }
+
+    .compartir-icon svg {
+        width: 36px;
+        height: 36px;
+        stroke: white;
+    }
+
+    .compartir-title {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: var(--color-primary-dark);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .compartir-subtitle {
+        font-family: var(--font-sans);
+        font-size: 1.05rem;
+        color: var(--color-text-medium);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .qr-wrapper {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid rgba(74, 144, 226, 0.1);
+    }
+
+    .qr-img {
+        width: 180px;
+        height: 180px;
+        display: block;
+        border-radius: 8px;
+    }
+
+    .qr-hint {
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        color: var(--color-text-lighter);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .compartir-btn {
         display: inline-flex;
         align-items: center;
         gap: 0.6rem;
+    }
+
+    .btn-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+        .compartir-icon {
+            width: 66px;
+            height: 66px;
+        }
+        .compartir-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+        .compartir-subtitle {
+            font-size: 0.95rem;
+        }
+        .qr-img {
+            width: 160px;
+            height: 160px;
+        }
     }
 </style>

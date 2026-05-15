@@ -72,9 +72,9 @@
   /* Layout & Spacing */
   --nav-height: 70px;
   --spacing-sm: 2rem;
-  --spacing-md: 4rem;
-  --spacing-lg: 6rem;
-  --spacing-xl: 8rem;
+  --spacing-md: 3rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 5rem;
   --border-radius-sm: 10px;
   --border-radius-md: 15px;
   --border-radius-lg: 20px;
@@ -702,7 +702,7 @@ strong {
 .botanical-decoration {
   width: 180px;
   height: 120px;
-  margin: 3rem auto;
+  margin: 1rem auto;
   opacity: 0.4;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"><path d="M100,140 Q80,100 70,70 Q65,50 75,35" fill="none" stroke="%234A90E2" stroke-width="1.2" /><circle cx="75" cy="35" r="8" fill="%237AB8F5" opacity="0.3"/><circle cx="85" cy="50" r="6" fill="%23A8D8EA" opacity="0.4"/><path d="M100,140 Q120,100 130,70 Q135,50 125,35" fill="none" stroke="%234A90E2" stroke-width="1.2" /><circle cx="125" cy="35" r="8" fill="%237AB8F5" opacity="0.3"/><circle cx="115" cy="50" r="6" fill="%23A8D8EA" opacity="0.4"/></svg>')
     center no-repeat;
@@ -736,7 +736,7 @@ strong {
 .frase-content {
   position: relative;
   z-index: 1;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
 }
 
 .frase-names {
@@ -1144,7 +1144,7 @@ strong {
 .video-title {
   font-size: 3.2rem;
   color: var(--color-primary);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 /* ===== VESTUARIO SECTION ===== */
@@ -1505,8 +1505,9 @@ strong {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   :root {
-    --spacing-lg: 2rem;
-    --spacing-xl: 2.5rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
   }
 
   /* Nav */
@@ -1592,8 +1593,9 @@ strong {
 
 @media (max-width: 480px) {
   :root {
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 1.25rem;
+    --spacing-xl: 1.5rem;
   }
 
   /* Layout */

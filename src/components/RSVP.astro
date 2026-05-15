@@ -1,4 +1,7 @@
 ---
+const mensaje = encodeURIComponent("Hola, quiero confirmar mi asistencia a la boda de Manuel y Andrea");
+const waNovia = `https://wa.me/${import.meta.env.PUBLIC_WA_NOVIA}?text=${mensaje}`;
+const waNovio = `https://wa.me/${import.meta.env.PUBLIC_WA_NOVIO}?text=${mensaje}`;
 ---
 <style>
     .btn {
@@ -37,13 +40,13 @@
         </p>
         <p class="confirmacion-deadline animate-on-scroll fade-up delay-1">Confirma tu asistencia<br>antes del 25 de octubre</p>
         <div class="buttons-container">
-            <a href="#" class="btn animate-on-scroll scale-in delay-2">
+            <a href={waNovia} target="_blank" rel="noopener noreferrer" class="btn animate-on-scroll scale-in delay-2">
                 <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
                 Confirmarle a la Novia
             </a>
-            <a href="#" class="btn btn-outline animate-on-scroll scale-in delay-3">
+            <a href={waNovio} target="_blank" rel="noopener noreferrer" class="btn btn-outline animate-on-scroll scale-in delay-3">
                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <circle cx="12" cy="7" r="4"/>
                     <path d="M5.5 21a7.5 7.5 0 0 1 13 0"/>

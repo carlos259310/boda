@@ -1,4 +1,5 @@
 ---
+const eventpicsUrl = "https://app.eventpics.net/XAtFxc9eSXTb";
 ---
 <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -14,9 +15,75 @@
             <li><a href="#vestuario" class="nav-link">Vestuario</a></li>
             <li><a href="#galeria"   class="nav-link">Galería</a></li>
             <li><a href="#confirmar" class="nav-link">Confirmar</a></li>
+            <li>
+                <a
+                    href={eventpicsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="nav-link nav-link--fotos"
+                    aria-label="Subir fotos de la boda (abre en nueva pestaña)"
+                >
+                    <svg class="fotos-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                    Subir fotos
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
+
+<style>
+    .nav-link--fotos {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: var(--gradient-primary);
+        color: white !important;
+        padding: 0.45rem 1rem !important;
+        border-radius: 20px;
+        font-size: 0.78rem !important;
+        letter-spacing: 0.08em;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        white-space: nowrap;
+    }
+
+    .nav-link--fotos::after {
+        display: none;
+    }
+
+    .nav-link--fotos:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        color: white !important;
+        opacity: 0.92;
+    }
+
+    .fotos-icon {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+        stroke-width: 2;
+    }
+
+    /* Móvil: ocupa todo el ancho como los demás links */
+    @media (max-width: 768px) {
+        .nav-link--fotos {
+            width: 100%;
+            justify-content: center;
+            padding: 0.65rem 1.2rem !important;
+            font-size: 0.88rem !important;
+            border-radius: 12px;
+        }
+
+        .fotos-icon {
+            width: 17px;
+            height: 17px;
+        }
+    }
+</style>
 
 <script>
     const navToggle = document.getElementById("navToggle");

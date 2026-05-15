@@ -276,15 +276,18 @@ const total = images.length;
     wrapper?.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
     wrapper?.addEventListener('mouseleave', startAutoPlay);
 
-    // Touch/swipe
+    // Touch/swipe — filtra scroll vertical para evitar cambios accidentales
     let touchStartX = 0;
+    let touchStartY = 0;
     wrapper?.addEventListener('touchstart', (e) => {
-        touchStartX = (e as TouchEvent).changedTouches[0].screenX;
+        touchStartX = (e as TouchEvent).changedTouches[0].clientX;
+        touchStartY = (e as TouchEvent).changedTouches[0].clientY;
     }, { passive: true });
     wrapper?.addEventListener('touchend', (e) => {
-        const diff = touchStartX - (e as TouchEvent).changedTouches[0].screenX;
-        if (Math.abs(diff) > 50) {
-            diff > 0 ? nextSlide() : prevSlide();
+        const deltaX = touchStartX - (e as TouchEvent).changedTouches[0].clientX;
+        const deltaY = touchStartY - (e as TouchEvent).changedTouches[0].clientY;
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+            deltaX > 0 ? nextSlide() : prevSlide();
             resetAutoPlay();
         }
     }, { passive: true });

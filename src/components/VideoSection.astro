@@ -162,10 +162,5 @@
     });
 
     video?.addEventListener('play', hideOverlay);
-    video?.addEventListener('pause', () => {
-        if (video.currentTime > 0 && video.currentTime < video.duration) {
-            showOverlay();
-        }
-    });
     video?.addEventListener('ended', showOverlay);
 </script>

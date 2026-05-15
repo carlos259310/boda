@@ -3,11 +3,21 @@ import { getImage } from "astro:assets";
 import boda1 from "../assets/images/boda_1.jpeg";
 import boda4 from "../assets/images/boda_4.jpeg";
 import boda7 from "../assets/images/boda_7.jpeg";
+import boda10 from "../assets/images/boda_10.jpeg";
+import boda11 from "../assets/images/boda_11.jpeg";
+import boda12 from "../assets/images/boda_12.jpeg";
+import boda13 from "../assets/images/boda_13.jpeg";
+import boda14 from "../assets/images/boda_14.jpeg";
 
 const heroImages = await Promise.all([
     getImage({ src: boda1, format: 'webp', width: 1440, quality: 70 }),
     getImage({ src: boda4, format: 'webp', width: 1440, quality: 70 }),
     getImage({ src: boda7, format: 'webp', width: 1440, quality: 70 }),
+    getImage({ src: boda10, format: 'webp', width: 1440, quality: 70 }),
+    getImage({ src: boda11, format: 'webp', width: 1440, quality: 70 }),
+    getImage({ src: boda12, format: 'webp', width: 1440, quality: 70 }),
+    getImage({ src: boda13, format: 'webp', width: 1440, quality: 70 }),
+    getImage({ src: boda14, format: 'webp', width: 1440, quality: 70 }),
 ]);
 ---
 <section id="inicio" class="hero">
@@ -67,6 +77,11 @@ const heroImages = await Promise.all([
     .hero-slide--0.active { animation: kenburns-0 20s ease-in-out forwards; }
     .hero-slide--1.active { animation: kenburns-1 20s ease-in-out forwards; }
     .hero-slide--2.active { animation: kenburns-2 20s ease-in-out forwards; }
+    .hero-slide--3.active { animation: kenburns-3 20s ease-in-out forwards; }
+    .hero-slide--4.active { animation: kenburns-4 20s ease-in-out forwards; }
+    .hero-slide--5.active { animation: kenburns-5 20s ease-in-out forwards; }
+    .hero-slide--6.active { animation: kenburns-6 20s ease-in-out forwards; }
+    .hero-slide--7.active { animation: kenburns-7 20s ease-in-out forwards; }
 
     @keyframes kenburns-0 {
         from { transform: scale(1) translate(0, 0); }
@@ -79,6 +94,26 @@ const heroImages = await Promise.all([
     @keyframes kenburns-2 {
         from { transform: scale(1.05) translate(1%, 0); }
         to   { transform: scale(1) translate(-1%, 0.5%); }
+    }
+    @keyframes kenburns-3 {
+        from { transform: scale(1) translate(0, 0); }
+        to   { transform: scale(1.07) translate(-1%, 1%); }
+    }
+    @keyframes kenburns-4 {
+        from { transform: scale(1.05) translate(-1%, 0); }
+        to   { transform: scale(1) translate(1.5%, -0.5%); }
+    }
+    @keyframes kenburns-5 {
+        from { transform: scale(1) translate(0, 0); }
+        to   { transform: scale(1.07) translate(1%, 1%); }
+    }
+    @keyframes kenburns-6 {
+        from { transform: scale(1.05) translate(0.5%, -0.5%); }
+        to   { transform: scale(1) translate(-1.5%, 0.5%); }
+    }
+    @keyframes kenburns-7 {
+        from { transform: scale(1) translate(0, 0); }
+        to   { transform: scale(1.07) translate(-0.5%, -1%); }
     }
 
     .hero-wave {

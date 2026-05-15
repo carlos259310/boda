@@ -21,7 +21,7 @@ const photo = await getImage({ src: boda3, format: 'webp', width: 200, height: 2
         </p>
         <p class="footer-date">28 · 11 · 2026</p>
         <p class="footer-credits">
-            Elaborado por <strong>Ing. Carlos Rodriguez</strong>
+            Elaborado por <a href="https://portafolio-carlos-rod.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-link"><strong>Ing. Carlos Rodriguez</strong></a>
         </p>
     </div>
 </footer>
@@ -97,6 +97,15 @@ const photo = await getImage({ src: boda3, format: 'webp', width: 200, height: 2
     .footer-credits strong {
         color: var(--color-primary-dark, #2E5C8A);
         font-weight: 600;
+    }
+
+    .footer-link {
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .footer-link:hover {
+        opacity: 0.75;
     }
 
     @media (max-width: 480px) {

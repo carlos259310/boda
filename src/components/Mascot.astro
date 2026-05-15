@@ -59,8 +59,17 @@ import bostonSuper from "../assets/images/boston-super.png";
     const mascotContainer = document.getElementById('mascotContainer');
     const mascotImages = document.querySelectorAll('.mascot-img');
     let messageIndex = 0;
+    let imageIndex = 0;
 
-    // Change message periodically
+    function cycleImage() {
+        imageIndex = (imageIndex + 1) % mascotImages.length;
+        mascotImages.forEach((img, idx) => {
+            img.classList.toggle('active', idx === imageIndex);
+        });
+        mascotContainer?.setAttribute('data-current-index', imageIndex.toString());
+    }
+
+    // Cambio automático de mensaje cada 6s
     setInterval(() => {
         if (speechText) {
             speechText.style.opacity = '0';
@@ -72,27 +81,16 @@ import bostonSuper from "../assets/images/boston-super.png";
         }
     }, 6000);
 
-    // Click interaction to cycle through images
+    // Cambio automático de outfit cada 5s (desfasado del mensaje)
+    let autoImageInterval = setInterval(cycleImage, 5000);
+
+    // Click: avanza outfit y reinicia el intervalo automático
     mascotContainer?.addEventListener('click', () => {
         mascotContainer.classList.add('bounce');
-        
-        // Cycle images
-        const currentIndex = parseInt(mascotContainer.getAttribute('data-current-index') || '0');
-        const nextIndex = (currentIndex + 1) % mascotImages.length;
-        
-        mascotImages.forEach((img, idx) => {
-            if (idx === nextIndex) {
-                img.classList.add('active');
-            } else {
-                img.classList.remove('active');
-            }
-        });
-        
-        mascotContainer.setAttribute('data-current-index', nextIndex.toString());
-
-        setTimeout(() => {
-            mascotContainer.classList.remove('bounce');
-        }, 1000);
+        clearInterval(autoImageInterval);
+        cycleImage();
+        autoImageInterval = setInterval(cycleImage, 5000);
+        setTimeout(() => mascotContainer.classList.remove('bounce'), 1000);
     });
 </script>
 
@@ -197,13 +195,13 @@ import bostonSuper from "../assets/images/boston-super.png";
 
     @media (max-width: 768px) {
         .mascot-image-wrapper {
-            width: 100px;
-            height: 100px;
+            width: 115px;
+            height: 115px;
         }
         .speech-bubble {
             font-size: 0.72rem;
             padding: 7px 11px;
-            max-width: 120px;
+            max-width: 125px;
             margin-bottom: 8px;
         }
         .mascot-container {
@@ -215,13 +213,13 @@ import bostonSuper from "../assets/images/boston-super.png";
 
     @media (max-width: 480px) {
         .mascot-image-wrapper {
-            width: 80px;
-            height: 80px;
+            width: 95px;
+            height: 95px;
         }
         .speech-bubble {
             font-size: 0.68rem;
             padding: 6px 10px;
-            max-width: 105px;
+            max-width: 110px;
             margin-bottom: 6px;
         }
         .mascot-container {

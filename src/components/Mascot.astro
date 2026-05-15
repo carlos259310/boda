@@ -81,15 +81,15 @@ import bostonSuper from "../assets/images/boston-super.png";
         }
     }, 6000);
 
-    // Cambio automático de outfit cada 5s (desfasado del mensaje)
-    let autoImageInterval = setInterval(cycleImage, 5000);
+    // Cambio automático de outfit cada 15s (desfasado del mensaje)
+    let autoImageInterval = setInterval(cycleImage, 15000);
 
     // Click: avanza outfit y reinicia el intervalo automático
     mascotContainer?.addEventListener('click', () => {
         mascotContainer.classList.add('bounce');
         clearInterval(autoImageInterval);
         cycleImage();
-        autoImageInterval = setInterval(cycleImage, 5000);
+        autoImageInterval = setInterval(cycleImage, 15000);
         setTimeout(() => mascotContainer.classList.remove('bounce'), 1000);
     });
 </script>

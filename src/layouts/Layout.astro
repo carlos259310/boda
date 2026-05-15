@@ -14,10 +14,7 @@ const {
     description = "Acompáñanos a celebrar nuestro matrimonio el Sábado 28 de Noviembre de 2026 en el Hostal Joshe, Santa Helena, El Cerrito, Valle del Cauca."
 } = Astro.props;
 
-const siteUrl = import.meta.env.VERCEL_URL
-    ? `https://${import.meta.env.VERCEL_URL}`
-    : (Astro.site?.href ?? 'http://localhost:4321');
-const ogImage = `${siteUrl}/og.jpeg`;
+const ogImage = "https://boda-andrea-manuel.vercel.app/og.jpeg";
 ---
 
 <!DOCTYPE html>

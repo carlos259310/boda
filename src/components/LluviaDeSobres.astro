@@ -1,0 +1,168 @@
+---
+import { Image } from "astro:assets";
+import sobresImg from "../assets/images/sobres.png";
+---
+<section id="sobres" class="sobres-section">
+
+    <!-- Lluvia de dinero -->
+    <div class="sobres-deco" aria-hidden="true">
+        <span class="deco-item deco-money--1">💸</span>
+        <span class="deco-item deco-money--2">💸</span>
+        <span class="deco-item deco-money--3">💸</span>
+        <span class="deco-item deco-money--4">💸</span>
+        <span class="deco-item deco-money--5">💸</span>
+    </div>
+
+    <div class="container text-center">
+
+        <div class="sobres-img-wrapper animate-on-scroll scale-in">
+            <Image
+                src={sobresImg}
+                alt="Lluvia de sobres"
+                width={220}
+                height={220}
+                class="sobres-img"
+                loading="lazy"
+            />
+        </div>
+
+        <h2 class="sobres-title animate-on-scroll fade-up delay-1">Lluvia de Sobres</h2>
+
+        <div class="sobres-divider animate-on-scroll fade-up delay-1" aria-hidden="true"></div>
+
+        <p class="sobres-text animate-on-scroll fade-up delay-2">
+            Su presencia es lo más importante,<br>
+            pero una lluvia de sobres será bienvenida.
+        </p>
+
+    </div>
+</section>
+
+<style>
+    .sobres-section {
+        padding: var(--spacing-lg) 0;
+        background: linear-gradient(160deg, #fdfbf7 0%, #fef9ee 40%, #fdf6e3 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Fondo radial dorado suave */
+    .sobres-section::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(201, 169, 110, 0.08) 0%, transparent 65%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    /* ---- Lluvia de sobres y dinero ---- */
+    .sobres-deco {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .deco-item {
+        position: absolute;
+        opacity: 0;
+        line-height: 1;
+        animation: falling-item linear infinite;
+    }
+
+    /* Dinero 💸 */
+    .deco-money--1 { left: 5%;  font-size: 3.2rem; animation-duration: 9s;   animation-delay: 0s;   }
+    .deco-money--2 { left: 24%; font-size: 2.6rem; animation-duration: 11s;  animation-delay: 2.5s; }
+    .deco-money--3 { left: 47%; font-size: 3.8rem; animation-duration: 8s;   animation-delay: 5s;   }
+    .deco-money--4 { left: 68%; font-size: 2.8rem; animation-duration: 10s;  animation-delay: 1s;   }
+    .deco-money--5 { left: 88%; font-size: 3.4rem; animation-duration: 12s;  animation-delay: 3.5s; }
+
+    @keyframes falling-item {
+        0%   { top: -12%;  opacity: 0;    transform: rotate(-15deg) translateX(0px);  }
+        8%   { opacity: 0.45; }
+        40%  { transform: rotate(10deg)  translateX(20px); }
+        70%  { transform: rotate(-8deg)  translateX(-12px); }
+        92%  { opacity: 0.45; }
+        100% { top: 110%;  opacity: 0;    transform: rotate(18deg)  translateX(6px);  }
+    }
+
+    /* ---- Imagen ---- */
+    .sobres-img-wrapper {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 2rem;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-gold), 0 0 0 6px rgba(201, 169, 110, 0.12);
+        transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+    }
+
+    .sobres-img-wrapper:hover {
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: var(--shadow-xl), 0 0 0 8px rgba(201, 169, 110, 0.18);
+    }
+
+    .sobres-img {
+        width: 78%;
+        height: 78%;
+        object-fit: contain;
+    }
+
+    /* ---- Título ---- */
+    .sobres-title {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: var(--color-primary-dark);
+        margin-bottom: 0.6rem;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    /* ---- Divider dorado ---- */
+    .sobres-divider {
+        width: 60px;
+        height: 2px;
+        background: var(--gradient-gold);
+        margin: 0 auto 1.6rem;
+        border-radius: 2px;
+        opacity: 0.7;
+    }
+
+    /* ---- Texto ---- */
+    .sobres-text {
+        font-family: var(--font-serif);
+        font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+        color: var(--color-text-medium);
+        line-height: 1.9;
+        max-width: 440px;
+        margin: 0 auto;
+        font-style: italic;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+        .sobres-img-wrapper {
+            width: 150px;
+            height: 150px;
+        }
+
+        .sobres-text {
+            font-size: 1rem;
+            padding: 0 1rem;
+        }
+
+        .deco-money--1 { font-size: 2.4rem; }
+        .deco-money--2 { font-size: 2rem;   }
+        .deco-money--3 { font-size: 2.8rem; }
+        .deco-money--4 { font-size: 2.2rem; }
+        .deco-money--5 { font-size: 2.6rem; }
+    }
+</style>

@@ -52,10 +52,14 @@
     let currentPhase: Phase | null = null;
     let celebrationKind: "confetti" | "hearts" | null = null;
 
-    function getPhase(distance: number, now: number): Phase {
+    const startOfDay = (t: number) => new Date(new Date(t).setHours(0, 0, 0, 0)).getTime();
+    const daysLeft = (now: number) => Math.round((startOfDay(weddingDate) - startOfDay(now)) / DAY);
+
+    function getPhase(now: number): Phase {
         if (now > weddingDayEnd) return "after";
-        if (distance <= DAY * 1 && new Date(now).toDateString() === new Date(weddingDate).toDateString()) return "today";
-        if (distance <= DAY * 3) return "soon";
+        const days = daysLeft(now);
+        if (days <= 0) return "today";
+        if (days <= 3) return "soon";
         return "normal";
     }
 
@@ -87,7 +91,7 @@
         if (!section) return;
         section.dataset.phase = phase;
 
-        if (phase === currentPhase && phase !== "soon") return;
+        if (phase === currentPhase && phase !== "soon" && phase !== "today") return;
 
         if (titleEl && subtitleEl) {
             if (phase === "after") {
@@ -95,14 +99,14 @@
                 subtitleEl.textContent = "28/11/2026 · ¡Felicidades Manuel y Andrea!";
                 subtitleEl.hidden = false;
             } else if (phase === "today") {
-                titleEl.textContent = "Faltan...";
-                subtitleEl.textContent = "¡Hoy es el gran día!";
+                const started = Date.now() >= weddingDate;
+                titleEl.textContent = started ? "¡Hoy es el gran día!" : "Faltan...";
+                subtitleEl.textContent = started ? "¡Felicidades Manuel y Andrea!" : "¡Hoy es el gran día!";
                 subtitleEl.hidden = false;
             } else if (phase === "soon") {
-                const startOfDay = (t: number) => new Date(new Date(t).setHours(0, 0, 0, 0)).getTime();
-                const days = Math.round((startOfDay(weddingDate) - startOfDay(Date.now())) / DAY);
+                const days = daysLeft(Date.now());
                 titleEl.textContent = "Faltan...";
-                subtitleEl.textContent = days <= 1 ? "¡Mañana es el gran día!" : `¡Faltan solo ${days} días!`;
+                subtitleEl.textContent = days <= 1 ? "¡Mañana es el gran día!" : `¡Solo ${days} días para el gran día!`;
                 subtitleEl.hidden = false;
             } else {
                 titleEl.textContent = "Faltan...";
@@ -119,7 +123,7 @@
         const now = Date.now();
         const distance = weddingDate - now;
 
-        applyPhase(getPhase(distance, now));
+        applyPhase(getPhase(now));
 
         if (distance < 0) {
             Object.values(countdownElements).forEach((el) => { if (el) el.textContent = "00"; });

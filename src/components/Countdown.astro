@@ -1,8 +1,10 @@
 ---
 ---
 <section id="countdown" class="countdown-section">
+    <div class="celebration" id="celebration" aria-hidden="true"></div>
     <div class="container text-center">
-        <h3 class="countdown-title animate-on-scroll fade-up">Faltan...</h3>
+        <h3 class="countdown-title animate-on-scroll fade-up" id="countdown-title">Faltan...</h3>
+        <p class="countdown-subtitle" id="countdown-subtitle" hidden></p>
         <div class="countdown-timer">
             <div class="countdown-item animate-on-scroll scale-in delay-1">
                 <span class="countdown-number" id="days">0</span>
@@ -36,15 +38,91 @@
         seconds: document.getElementById("seconds"),
     };
 
+    const section = document.getElementById("countdown");
+    const titleEl = document.getElementById("countdown-title");
+    const subtitleEl = document.getElementById("countdown-subtitle");
+    const celebrationEl = document.getElementById("celebration");
+
+    const DAY = 1000 * 60 * 60 * 24;
+    const weddingDay = new Date(weddingDate);
+    weddingDay.setHours(23, 59, 59, 999);
+    const weddingDayEnd = weddingDay.getTime();
+
+    type Phase = "normal" | "soon" | "today" | "after";
+    let currentPhase: Phase | null = null;
+    let celebrationKind: "confetti" | "hearts" | null = null;
+
+    function getPhase(distance: number, now: number): Phase {
+        if (now > weddingDayEnd) return "after";
+        if (distance <= DAY * 1 && new Date(now).toDateString() === new Date(weddingDate).toDateString()) return "today";
+        if (distance <= DAY * 3) return "soon";
+        return "normal";
+    }
+
+    function spawnCelebration(kind: "confetti" | "hearts") {
+        if (!celebrationEl || celebrationKind === kind) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        celebrationKind = kind;
+        celebrationEl.innerHTML = "";
+        const colors = ["#C9A96E", "#E8D5B7", "#7AB8F5", "#ffffff"];
+        const count = window.innerWidth < 600 ? 18 : 28;
+        for (let i = 0; i < count; i++) {
+            const p = document.createElement("span");
+            const rnd = Math.random;
+            p.style.setProperty("--x", `${rnd() * 100}%`);
+            p.style.setProperty("--size", `${6 + rnd() * 6}px`);
+            p.style.setProperty("--c", kind === "hearts" ? (rnd() > 0.5 ? "#E8D5B7" : "#C9A96E") : colors[i % colors.length]);
+            p.style.setProperty("--dur", `${5 + rnd() * 5}s`);
+            p.style.setProperty("--delay", `${-rnd() * 8}s`);
+            p.style.setProperty("--fall", `${(section?.offsetHeight ?? 400) * 1.1}px`);
+            if (kind === "hearts") {
+                p.className = "heart";
+                p.textContent = "♥";
+            }
+            celebrationEl.appendChild(p);
+        }
+    }
+
+    function applyPhase(phase: Phase) {
+        if (!section) return;
+        section.dataset.phase = phase;
+
+        if (phase === currentPhase && phase !== "soon") return;
+
+        if (titleEl && subtitleEl) {
+            if (phase === "after") {
+                titleEl.textContent = "¡Ya se celebró la boda!";
+                subtitleEl.textContent = "28/11/2026 · ¡Felicidades Manuel y Andrea!";
+                subtitleEl.hidden = false;
+            } else if (phase === "today") {
+                titleEl.textContent = "Faltan...";
+                subtitleEl.textContent = "¡Hoy es el gran día!";
+                subtitleEl.hidden = false;
+            } else if (phase === "soon") {
+                const startOfDay = (t: number) => new Date(new Date(t).setHours(0, 0, 0, 0)).getTime();
+                const days = Math.round((startOfDay(weddingDate) - startOfDay(Date.now())) / DAY);
+                titleEl.textContent = "Faltan...";
+                subtitleEl.textContent = days <= 1 ? "¡Mañana es el gran día!" : `¡Faltan solo ${days} días!`;
+                subtitleEl.hidden = false;
+            } else {
+                titleEl.textContent = "Faltan...";
+                subtitleEl.hidden = true;
+            }
+        }
+
+        if (phase === "after") spawnCelebration("hearts");
+        else if (phase === "soon" || phase === "today") spawnCelebration("confetti");
+        currentPhase = phase;
+    }
+
     function updateCountdown() {
         const now = Date.now();
         const distance = weddingDate - now;
 
+        applyPhase(getPhase(distance, now));
+
         if (distance < 0) {
-            const countdownContainer = document.getElementById("countdown");
-            if (countdownContainer) {
-                countdownContainer.innerHTML = '<div class="countdown-finished" style="padding: 2rem;"><p class="countdown-title" style="margin-bottom: 1rem;">¡El gran día ha llegado!</p></div>';
-            }
+            Object.values(countdownElements).forEach((el) => { if (el) el.textContent = "00"; });
             return;
         }
 

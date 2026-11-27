@@ -948,6 +948,119 @@ strong {
   animation: pulse 2s ease-in-out infinite;
 }
 
+/* Mensaje dinámico (cuenta final / post-boda) */
+.countdown-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--color-gold-light);
+  margin: -1.5rem 0 2rem;
+  position: relative;
+  z-index: 1;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+#countdown[data-phase="after"] .countdown-title {
+  margin-bottom: 1rem;
+}
+
+#countdown[data-phase="after"] .countdown-subtitle {
+  margin: 0;
+}
+
+#countdown[data-phase="after"] .countdown-timer {
+  display: none;
+}
+
+/* Capa de celebración: confeti y corazones */
+.celebration {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.celebration span {
+  position: absolute;
+  top: -5%;
+  left: var(--x);
+  width: var(--size);
+  height: calc(var(--size) * 1.6);
+  background: var(--c);
+  border-radius: 2px;
+  opacity: 0;
+  animation: confettiFall var(--dur) linear var(--delay) infinite;
+}
+
+.celebration span.heart {
+  top: auto;
+  bottom: -10%;
+  width: auto;
+  height: auto;
+  background: none;
+  font-size: calc(var(--size) * 2.4);
+  line-height: 1;
+  color: var(--c);
+  animation: heartFloat var(--dur) ease-in var(--delay) infinite;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(var(--fall, 420px)) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-380px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-subtitle {
+    font-size: 1.05rem;
+    margin: -1.6rem 0 1.6rem;
+    padding: 0 1rem;
+    line-height: 1.4;
+  }
+  #countdown[data-phase="after"] .countdown-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+  #countdown[data-phase="after"] .countdown-subtitle {
+    margin: 0;
+    font-size: 1rem;
+  }
+  #countdown[data-phase="after"] .container {
+    padding: 1.5rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celebration {
+    display: none;
+  }
+  .countdown-subtitle {
+    animation: none;
+  }
+}
+
 /* ===== CEREMONIA SECTION ===== */
 .ceremonia-section {
   padding: var(--spacing-md) 0;
